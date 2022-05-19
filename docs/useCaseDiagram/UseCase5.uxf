@@ -1,0 +1,78 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<diagram program="umlet" version="15.0.0">
+  <zoom_level>10</zoom_level>
+  <element>
+    <id>UMLActor</id>
+    <coordinates>
+      <x>50</x>
+      <y>110</y>
+      <w>60</w>
+      <h>110</h>
+    </coordinates>
+    <panel_attributes>사용자</panel_attributes>
+    <additional_attributes/>
+  </element>
+  <element>
+    <id>UMLNote</id>
+    <coordinates>
+      <x>390</x>
+      <y>130</y>
+      <w>140</w>
+      <h>70</h>
+    </coordinates>
+    <panel_attributes>MT1 : 대형마트
+CS2 : 편의점
+SC4 : 학교
+SW8 : 지하철역
+PO3 : 공공기관
+FD6 : 카페 
+HP8 : 병원
+PM9 :  약국
+bg=white</panel_attributes>
+    <additional_attributes/>
+  </element>
+  <element>
+    <id>UMLUseCase</id>
+    <coordinates>
+      <x>160</x>
+      <y>110</y>
+      <w>200</w>
+      <h>40</h>
+    </coordinates>
+    <panel_attributes>관심 지역 주변 상권 검색</panel_attributes>
+    <additional_attributes/>
+  </element>
+  <element>
+    <id>Relation</id>
+    <coordinates>
+      <x>90</x>
+      <y>120</y>
+      <w>90</w>
+      <h>50</h>
+    </coordinates>
+    <panel_attributes/>
+    <additional_attributes>70.0;10.0;10.0;30.0</additional_attributes>
+  </element>
+  <element>
+    <id>UMLUseCase</id>
+    <coordinates>
+      <x>180</x>
+      <y>200</y>
+      <w>170</w>
+      <h>40</h>
+    </coordinates>
+    <panel_attributes>관심 매물 주변 상권 검색</panel_attributes>
+    <additional_attributes/>
+  </element>
+  <element>
+    <id>Relation</id>
+    <coordinates>
+      <x>90</x>
+      <y>140</y>
+      <w>110</w>
+      <h>100</h>
+    </coordinates>
+    <panel_attributes/>
+    <additional_attributes>90.0;80.0;10.0;10.0</additional_attributes>
+  </element>
+</diagram>

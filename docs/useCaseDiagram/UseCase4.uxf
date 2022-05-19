@@ -1,0 +1,59 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<diagram program="umlet" version="15.0.0">
+  <zoom_level>10</zoom_level>
+  <element>
+    <id>UMLActor</id>
+    <coordinates>
+      <x>20</x>
+      <y>30</y>
+      <w>60</w>
+      <h>110</h>
+    </coordinates>
+    <panel_attributes>사용자</panel_attributes>
+    <additional_attributes/>
+  </element>
+  <element>
+    <id>UMLUseCase</id>
+    <coordinates>
+      <x>160</x>
+      <y>60</y>
+      <w>190</w>
+      <h>40</h>
+    </coordinates>
+    <panel_attributes>관심지역 키워드 뉴스 검색</panel_attributes>
+    <additional_attributes/>
+  </element>
+  <element>
+    <id>UMLUseCase</id>
+    <coordinates>
+      <x>150</x>
+      <y>140</y>
+      <w>230</w>
+      <h>40</h>
+    </coordinates>
+    <panel_attributes>아파트 매매 관련 뉴스 조회</panel_attributes>
+    <additional_attributes/>
+  </element>
+  <element>
+    <id>Relation</id>
+    <coordinates>
+      <x>60</x>
+      <y>50</y>
+      <w>120</w>
+      <h>50</h>
+    </coordinates>
+    <panel_attributes/>
+    <additional_attributes>10.0;20.0;100.0;30.0</additional_attributes>
+  </element>
+  <element>
+    <id>Relation</id>
+    <coordinates>
+      <x>60</x>
+      <y>60</y>
+      <w>110</w>
+      <h>120</h>
+    </coordinates>
+    <panel_attributes/>
+    <additional_attributes>10.0;10.0;90.0;100.0</additional_attributes>
+  </element>
+</diagram>
