@@ -1,0 +1,39 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.ssafy.happyhouse.mapper.QnaBoardMapper">
+
+	<!-- QnA 글 전체 조회 -->
+	<select id="selectQnaBoard" resultType="qnaBoardDto">
+		select qnaNo, title, content, userId, regDate
+		from qnaboard
+		order by qnaNo desc
+	</select>
+
+	<insert id="insertQnaBoard" parameterType="qnaBoardDto">
+		insert into qnaboard(title, content, userId, regDate) 
+		values (#{title}, #{content}, #{userId}, now())
+	</insert>
+
+	<select id="selectQnaBoardByNo" parameterType="int"
+		resultType="qnaBoardDto">
+		select qnaNo, userId, title, content, regDate
+		from qnaboard
+		where qnaNo = #{qnaNo}
+	</select>
+	
+	<update id="updateQnaBoard" parameterType="qnaBoardDto">
+		update qnaboard
+		set title = #{title}, content = #{content}
+		where qnaNo = #{qnaNo}
+	</update>
+	
+	<delete id="deleteQnaBoard" parameterType="int">
+		delete
+		from qnaboard
+		where qnaNo = #{qnaNo}
+	</delete>
+	
+</mapper>
