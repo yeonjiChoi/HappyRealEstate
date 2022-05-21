@@ -1,0 +1,31 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.ssafy.happyhouse.mapper.QnaCommentMapper">
+
+	<!-- qnaNo번의 게시글에 해당하는 댓글 모두 반환 -->
+	<select id="selectQnaComment" parameterType="int" resultType="qnaCommentDto">
+		select no, qnaNo, userId, content, regDate
+		from qnacomment
+		where qnaNo = #{qnaNo}
+		order by no
+	</select>
+	
+	<insert id="insertQnaComment" parameterType="qnaCommentDto">
+		insert into qnacomment(qnaNo, content, userId, regDate)
+		values (#{qnaNo}, #{content}, #{userId}, now())
+	</insert>
+	
+	<update id="updateQnaComment" parameterType="qnaCommentDto">
+		update qnacomment
+		set content = #{content}
+		where no = #{no}
+	</update>
+	
+	<delete id="deleteQnaComment" parameterType="int">
+		delete
+		from qnacomment
+		where no = #{no}
+	</delete> 
+</mapper>
