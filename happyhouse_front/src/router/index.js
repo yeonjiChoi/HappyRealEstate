@@ -15,6 +15,7 @@ const routes = [
     name: "home",
     component: HomeView,
   },
+
   // 로그인 로그아웃
   {
     path: "/login",
@@ -86,6 +87,48 @@ const routes = [
         path: "/QnAWrite",
         name: "QnAWrite",
         component: () => import("@/components/QnA/QnAWrite.vue"),
+      },
+    ],
+  },
+  // APT List
+  {
+    path: "/House",
+    name: "House",
+    component: () => import("@/views/HouseInfoView.vue"),
+    redirect: "/House/list",
+    children: [
+      {
+        path: "list",
+        name: "HouseList",
+        component: () => import("@/components/House/HouseInfoList.vue"),
+      },
+    ],
+  },
+  {
+    path: "/InterestHouse",
+    name: "InterestHouse",
+    component: () => import("@/views/InterestHouseView.vue"),
+    redirect: "/InterestHouse/list",
+    children: [
+      {
+        path: "list",
+        name: "InterestHouseList",
+        component: () =>
+          import("@/components/InterestHouse/InterestHouseList.vue"),
+      },
+    ],
+  },
+  {
+    path: "/InterestArea",
+    name: "InterestArea",
+    component: () => import("@/views/InterestAreaView.vue"),
+    redirect: "/InterestArea/list",
+    children: [
+      {
+        path: "list",
+        name: "InterestAreaList",
+        component: () =>
+          import("@/components/InterestArea/InterestAreaList.vue"),
       },
     ],
   },

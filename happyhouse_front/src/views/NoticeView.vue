@@ -2,11 +2,17 @@
   <div>
     <h2>NOTICE</h2>
     <router-view></router-view>
+    <footer-bar></footer-bar>
   </div>
 </template>
 
 <script>
-export default {};
+import FooterBar from "@/components/FooterBar.vue";
+
+export default {
+  components: { FooterBar },
+  comments: { FooterBar },
+};
 </script>
 
 <style></style>

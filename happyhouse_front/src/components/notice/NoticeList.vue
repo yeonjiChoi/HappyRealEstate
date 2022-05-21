@@ -1,17 +1,7 @@
 <template>
-  <div>
-    NoticeList
-    <footer-bar></footer-bar>
-  </div>
+  <div>NoticeList</div>
 </template>
 
-<script>
-import FooterBar from "@/components/FooterBar.vue";
-
-export default {
-  components: { FooterBar },
-  comments: { FooterBar },
-};
-</script>
+<script></script>
 
 <style></style>

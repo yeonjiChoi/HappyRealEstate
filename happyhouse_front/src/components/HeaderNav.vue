@@ -15,10 +15,19 @@
             <li class="nav-item">
               <router-link :to="{ name: 'QnA' }">QnA</router-link>
             </li>
-            <li class="nav-item">매물 정보</li>
-            <li class="nav-item">관심매물</li>
-            <li class="nav-item">관심지역</li>
-            <li class="nav-item">LOGIN</li>
+            <li class="nav-item">
+              <router-link :to="{ name: 'House' }"> 매물 정보 </router-link>
+            </li>
+            <li class="nav-item">
+              <router-link :to="{ name: 'InterestHouse' }"
+                >관심 매물</router-link
+              >
+            </li>
+            <li class="nav-item">
+              <router-link :to="{ name: 'InterestArea' }"
+                >관심 지역</router-link
+              >
+            </li>
           </ul>
         </div>
       </div>
