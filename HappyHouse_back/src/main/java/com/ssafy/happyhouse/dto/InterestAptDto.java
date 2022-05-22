@@ -9,7 +9,7 @@ public class InterestAptDto {
 	private int no;
 	@ApiModelProperty(value = "회원 아이디")
 	private String userId;
-	@ApiModelProperty(value = "아파트 매물 코드")
+	@ApiModelProperty(value = "아파트 거래 코드")
 	private String aptNo;
 	@ApiModelProperty(value = "관심 매물 설정일")
 	private String date;

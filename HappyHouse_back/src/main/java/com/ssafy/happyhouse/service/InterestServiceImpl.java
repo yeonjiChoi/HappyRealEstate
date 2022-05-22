@@ -6,6 +6,8 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import com.ssafy.happyhouse.dto.BaseAddressDto;
+import com.ssafy.happyhouse.dto.HouseInfoDto;
+import com.ssafy.happyhouse.dto.InterestAptDto;
 import com.ssafy.happyhouse.dto.InterestAreaDto;
 import com.ssafy.happyhouse.mapper.InterestMapper;
 
@@ -31,8 +33,27 @@ public class InterestServiceImpl implements InterestService {
 	}
 
 	@Override
-	public boolean deleteInterestArea(int no) {
-		return interestMapper.deleteInterestArea(no);
+	public boolean deleteInterestArea(InterestAreaDto interestAreaDto) {
+		return interestMapper.deleteInterestArea(interestAreaDto) == 1;
+	}
+
+	@Override
+	public boolean registInterestApt(InterestAptDto interestAptDto) {
+		if(interestMapper.checkInterestApt(interestAptDto) == 1) {
+			return false;
+		} else {
+			return interestMapper.insertInterestApt(interestAptDto) == 1;
+		}
+	}
+
+	@Override
+	public List<HouseInfoDto> retrieveInterestApt(String userId) {
+		return interestMapper.selectInterestApt(userId);
+	}
+
+	@Override
+	public boolean deleteInterestApt(InterestAptDto interestAptDto) {
+		return interestMapper.deleteInterestApt(interestAptDto) == 1;
 	}
 
 }

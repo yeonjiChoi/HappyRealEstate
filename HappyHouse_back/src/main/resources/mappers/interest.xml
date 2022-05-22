@@ -21,8 +21,40 @@
 		where i.userId = #{userId};
 	</select>
 
-	<delete id="deleteInterestArea" parameterType="int">
-		delete from interestArea
-		where no = #{no}
+	<delete id="deleteInterestArea" parameterType="interestAreaDto">
+		delete from interestarea
+		where userId = #{userId} and dongCode = #{dongCode}
+	</delete>
+	
+	<select id="checkInterestApt" parameterType="interestAptDto" resultType="int">
+		select count(*)
+		from interestapt
+		where userId = #{userId} and aptNo = #{aptNo}
+	</select>
+
+	<insert id="insertInterestApt" parameterType="interestAptDto">
+		insert into interestapt(userId, aptNo, date)
+		values (#{userId}, #{aptNo}, now())
+	</insert>
+	
+	<select id="selectInterestApt" parameterType="string" resultType="houseInfoDto">
+		select i.aptNo as no, h.aptCode, h.aptName, h.dongCode, si.sidoName, gu.gugunName,
+		h.dongName, h.buildYear, h.jibun, h.lat, h.lng, h.img,
+		d.dealAmount, d.dealYear, d.dealMonth, d.dealDay, d.area, d.floor
+		from houseinfo h
+		inner join housedeal d
+		on h.aptCode = d.aptCode
+		left join sidocode si
+		on left(h.dongCode,2) = left(si.sidoCode,2)
+		left join guguncode gu
+		on left(h.dongCode,5) = left(gu.gugunCode,5)
+		inner join interestapt i
+		on i.aptNo = d.no
+		where i.userId = #{userId};
+	</select>
+	
+		<delete id="deleteInterestApt" parameterType="interestAptDto">
+		delete from interestapt
+		where userId = #{userId} and aptNo = #{aptNo}
 	</delete>
 </mapper>

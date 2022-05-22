@@ -5,6 +5,9 @@ import io.swagger.annotations.ApiModelProperty;
 
 @ApiModel(value = "HouseInfoDto : 아파트 거래 정보", description = "아파트 상세 거래 정보를 나타낸다.")
 public class HouseInfoDto {
+	
+	@ApiModelProperty(value = "아파트 거래 코드 ")
+	private int no;
 	@ApiModelProperty(value = "아파트 코드")
 	private String aptCode;
 	@ApiModelProperty(value = "아파트 이름")
@@ -40,6 +43,13 @@ public class HouseInfoDto {
 	@ApiModelProperty(value = "층")
 	private String floor;
 	
+	
+	public int getNo() {
+		return no;
+	}
+	public void setNo(int no) {
+		this.no = no;
+	}
 	public String getAptCode() {
 		return aptCode;
 	}
@@ -144,12 +154,12 @@ public class HouseInfoDto {
 	}
 	@Override
 	public String toString() {
-		return "HouseInfoDto [aptCode=" + aptCode + ", aptName=" + aptName + ", dongCode=" + dongCode + ", sidoName="
-				+ sidoName + ", gugunName=" + gugunName + ", dongName=" + dongName + ", buildYear=" + buildYear
-				+ ", jibun=" + jibun + ", lat=" + lat + ", lng=" + lng + ", img=" + img + ", dealAmount=" + dealAmount
-				+ ", dealYear=" + dealYear + ", dealMonth=" + dealMonth + ", dealDay=" + dealDay + ", area=" + area
-				+ ", floor=" + floor + "]";
+		return "HouseInfoDto [no=" + no + ", aptCode=" + aptCode + ", aptName=" + aptName + ", dongCode=" + dongCode
+				+ ", sidoName=" + sidoName + ", gugunName=" + gugunName + ", dongName=" + dongName + ", buildYear="
+				+ buildYear + ", jibun=" + jibun + ", lat=" + lat + ", lng=" + lng + ", img=" + img + ", dealAmount="
+				+ dealAmount + ", dealYear=" + dealYear + ", dealMonth=" + dealMonth + ", dealDay=" + dealDay
+				+ ", area=" + area + ", floor=" + floor + "]";
 	}
-
+	
 	
 }
