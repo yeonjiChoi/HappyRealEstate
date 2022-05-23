@@ -33,8 +33,8 @@ public class InterestServiceImpl implements InterestService {
 	}
 
 	@Override
-	public boolean deleteInterestArea(InterestAreaDto interestAreaDto) {
-		return interestMapper.deleteInterestArea(interestAreaDto) == 1;
+	public boolean deleteInterestArea(int no) {
+		return interestMapper.deleteInterestArea(no) == 1;
 	}
 
 	@Override

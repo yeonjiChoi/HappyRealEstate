@@ -139,6 +139,7 @@ public class MemberController {
 			try {
 //				로그인 사용자 정보.
 				MemberDto memberDto = memberService.userInfo(userId);
+				logger.debug("userInfo 호출  {}", memberDto);
 				resultMap.put("userInfo", memberDto);
 				resultMap.put("message", SUCCESS);
 				status = HttpStatus.ACCEPTED;

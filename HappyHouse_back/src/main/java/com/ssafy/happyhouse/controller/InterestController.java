@@ -13,6 +13,7 @@ import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 
 import com.ssafy.happyhouse.dto.BaseAddressDto;
@@ -40,7 +41,7 @@ public class InterestController {
 	@ApiOperation(value = "관심 지역 등록", notes = "회원 아이디와 동 코드를 받아 관심 지역으로 등록한다. 성공 여부에 따라 'success' 또는 'fail'을 반환한다.", response=String.class)
 	@PostMapping("/area")
 	public ResponseEntity<String> registInterestArea(@RequestBody InterestAreaDto interestAreaDto) {
-		logger.debug("registInterestArea 호출");
+		logger.debug("registInterestArea 호출 {}", interestAreaDto);
 		if(interestService.registInterestArea(interestAreaDto)) {
 			return new ResponseEntity<String>(SUCCESS, HttpStatus.OK);
 		}
@@ -48,17 +49,17 @@ public class InterestController {
 	}
 
 	@ApiOperation(value = "관심 지역 정보 반환", notes = "회원 아이디를 받아 회원이 등록한 관심 지역 정보를 반환한다.", response=List.class)
-	@GetMapping("/area/{userId}")
-	public ResponseEntity<List<BaseAddressDto>> retrieveInterestArea(@PathVariable("userId") String userId) {
+	@GetMapping("/area")
+	public ResponseEntity<List<BaseAddressDto>> retrieveInterestArea(@RequestParam("userId") String userId) {
 		logger.debug("retrieveInterestArea 호출");
 		return new ResponseEntity<List<BaseAddressDto>>(interestService.retrieveInterestArea(userId), HttpStatus.OK);
 	} 
 
 	@ApiOperation(value = "관심 지역 해제", notes = "회원이 등록한 관심 지역 정보를 해제한다.", response=String.class)
-	@DeleteMapping("/area")
-	public  ResponseEntity<String> deleteInterestArea(@RequestBody InterestAreaDto interestAreaDto) {
-		logger.debug("deleteInterestArea - 호출");
-		if (interestService.deleteInterestArea(interestAreaDto)) {
+	@DeleteMapping("/area/{no}")
+	public  ResponseEntity<String> deleteInterestArea(@PathVariable("no") int no) {
+		logger.debug("deleteInterestArea - 호출 {}");
+		if (interestService.deleteInterestArea(no)) {
 			return new ResponseEntity<String>(SUCCESS, HttpStatus.OK);
 		}
 		return new ResponseEntity<String>(FAIL, HttpStatus.NO_CONTENT);
@@ -75,8 +76,8 @@ public class InterestController {
 	}
 	
 	@ApiOperation(value = "관심 아파트 매물 정보 반환", notes = "회원 아이디를 받아 회원이 등록한 관심 아파트 매물 정보를 반환한다.", response=List.class)
-	@GetMapping("/apt/{userId}")
-	public ResponseEntity<List<HouseInfoDto>> retrieveInterestApt(@PathVariable("userId") String userId) {
+	@GetMapping("/apt")
+	public ResponseEntity<List<HouseInfoDto>> retrieveInterestApt(@RequestParam("userId") String userId) {
 		logger.debug("retrieveInterestApt 호출");
 		return new ResponseEntity<List<HouseInfoDto>>(interestService.retrieveInterestApt(userId), HttpStatus.OK);
 	}

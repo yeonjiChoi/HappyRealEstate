@@ -15,7 +15,7 @@ public interface InterestMapper {
 	int insertInterestArea(InterestAreaDto interestAreaDto);
 	int checkInterestArea(InterestAreaDto interestAreaDto);
 	List<BaseAddressDto> selectInterestArea(String userId);
-	int deleteInterestArea(InterestAreaDto interestAreaDto);
+	int deleteInterestArea(int no);
 	
 	int checkInterestApt(InterestAptDto interestAptDto);
 	int insertInterestApt(InterestAptDto interestAptDto);

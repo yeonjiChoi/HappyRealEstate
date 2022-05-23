@@ -21,9 +21,9 @@
 		where i.userId = #{userId};
 	</select>
 
-	<delete id="deleteInterestArea" parameterType="interestAreaDto">
+	<delete id="deleteInterestArea" parameterType="int">
 		delete from interestarea
-		where userId = #{userId} and dongCode = #{dongCode}
+		where no = #{no};
 	</delete>
 	
 	<select id="checkInterestApt" parameterType="interestAptDto" resultType="int">
