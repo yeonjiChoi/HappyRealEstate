@@ -21,6 +21,11 @@ const routes = [
     name: "login",
     component: () => import("@/components/Member/MemberLogin.vue"),
   },
+  {
+    path: "/register",
+    name: "register",
+    component: () => import("@/components/Member/MemberRegister.vue"),
+  },
   //회원 관리
   {
     path: "/Member",

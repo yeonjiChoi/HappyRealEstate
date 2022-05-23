@@ -17,7 +17,9 @@
           <b-button class="btn float-right">
             <router-link :to="{ name: 'login' }">Login</router-link>
           </b-button>
-          <b-button class="btn float-right">Sign UP</b-button>
+          <b-button class="btn float-right">
+            <router-link :to="{ name: 'register' }"> Sign UP </router-link>
+          </b-button>
         </b-col>
       </b-container>
       <b-container>
