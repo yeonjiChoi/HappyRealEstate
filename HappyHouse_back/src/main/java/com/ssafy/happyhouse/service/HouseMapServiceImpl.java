@@ -5,6 +5,7 @@ import java.util.List;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import com.ssafy.happyhouse.dto.HouseDto;
 import com.ssafy.happyhouse.dto.HouseInfoDto;
 import com.ssafy.happyhouse.dto.SidoGugunDongCodeDto;
 import com.ssafy.happyhouse.mapper.HouseMapMapper;
@@ -31,8 +32,13 @@ public class HouseMapServiceImpl implements HouseMapService {
 	}
 
 	@Override
-	public List<HouseInfoDto> getAptInDong(String dong) throws Exception {
+	public List<HouseDto> getAptInDong(String dong) throws Exception {
 		return houseMapMapper.getAptInDong(dong);
+	}
+
+	@Override
+	public List<HouseInfoDto> getDealInAPt(String aptCode) {
+		return houseMapMapper.getDealInAPt(aptCode);
 	}
 
 }

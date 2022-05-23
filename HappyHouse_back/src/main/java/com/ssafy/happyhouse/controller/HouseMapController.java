@@ -12,6 +12,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 
+import com.ssafy.happyhouse.dto.HouseDto;
 import com.ssafy.happyhouse.dto.HouseInfoDto;
 import com.ssafy.happyhouse.dto.SidoGugunDongCodeDto;
 import com.ssafy.happyhouse.service.HouseMapService;
@@ -48,9 +49,17 @@ public class HouseMapController {
 		return new ResponseEntity<List<SidoGugunDongCodeDto>>(houseMapService.getDongInGugun(gugun), HttpStatus.OK);
 	}
 	
-	@ApiOperation(value = "아파트 매매 정보 반환", notes = "동코드에 해당하는 모든 아파트 매매 정보를 반환한다.", response=List.class)
+	@ApiOperation(value = "아파트 정보 반환", notes = "동코드에 해당하는 모든 아파트 정보를 반환한다.", response=List.class)
 	@GetMapping("/apt")
-	public ResponseEntity<List<HouseInfoDto>> apt(@RequestParam("dong") String dong) throws Exception {
-		return new ResponseEntity<List<HouseInfoDto>>(houseMapService.getAptInDong(dong), HttpStatus.OK);
+	public ResponseEntity<List<HouseDto>> apt(@RequestParam("dong") String dong) throws Exception {
+		logger.debug("apt 호출 - dongCode : {}", dong);
+		return new ResponseEntity<List<HouseDto>>(houseMapService.getAptInDong(dong), HttpStatus.OK);
+	}
+	
+	@ApiOperation(value = "아파트 매매 정보 반환", notes = "아파트 코드에 해당하는 모든 아파트 매매 정보를 반환한다.", response=List.class)
+	@GetMapping("/deal")
+	public ResponseEntity<List<HouseInfoDto>> deal(@RequestParam("aptCode") String aptCode) throws Exception {
+		logger.debug("deal 호출 - aptCode : {}", aptCode);
+		return new ResponseEntity<List<HouseInfoDto>>(houseMapService.getDealInAPt(aptCode), HttpStatus.OK);
 	}
 }
