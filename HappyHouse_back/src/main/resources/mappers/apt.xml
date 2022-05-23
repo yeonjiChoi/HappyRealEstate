@@ -30,7 +30,7 @@
 
 	<select id="getAptInDong" parameterType="string"
 		resultType="houseInfoDto">
-		select h.aptCode, h.aptName, h.dongCode, si.sidoName, gu.gugunName,
+		select d. no, h.aptCode, h.aptName, h.dongCode, si.sidoName, gu.gugunName,
 		h.dongName, h.buildYear, h.jibun, h.lat, h.lng, h.img,
 		d.dealAmount, d.dealYear, d.dealMonth, d.dealDay, d.area, d.floor
 		from houseinfo h
