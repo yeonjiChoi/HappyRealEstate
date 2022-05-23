@@ -14,12 +14,22 @@
           </div>
         </b-row>
         <b-col>
-          <b-button class="btn float-right">
-            <router-link :to="{ name: 'login' }">Login</router-link>
-          </b-button>
-          <b-button class="btn float-right">
-            <router-link :to="{ name: 'register' }"> Sign UP </router-link>
-          </b-button>
+          <div v-if="userInfo">
+            <b-button class="btn float-right" @click.prevent="onClickLogout"
+              >LogOut</b-button
+            >
+            <div class="float-right">
+              <router-link :to="{ name: 'memberInfo' }">MyPage</router-link>
+            </div>
+          </div>
+          <div v-else>
+            <b-button class="btn float-right">
+              <router-link :to="{ name: 'login' }">Login</router-link>
+            </b-button>
+            <b-button class="btn float-right">
+              <router-link :to="{ name: 'register' }"> Sign UP </router-link>
+            </b-button>
+          </div>
         </b-col>
       </b-container>
       <b-container>
@@ -56,7 +66,27 @@
 </template>
 
 <script>
-export default {};
+import { mapState, mapMutations } from "vuex";
+// import ms from "@/store/modules/memberStore";
+
+const memberStore = "memberStore";
+
+export default {
+  name: "HeaderNav",
+  computed: {
+    ...mapState(memberStore, ["isLogin", "userInfo"]),
+  },
+  methods: {
+    ...mapMutations(memberStore, ["SET_IS_LOGIN", "SET_USER_INFO"]),
+    onClickLogout() {
+      // console.log("memberStore : ", ms);
+      this.SET_IS_LOGIN(false);
+      this.SET_USER_INFO(null);
+      sessionStorage.removeItem("access-token");
+      if (this.$route.path != "/") this.$router.push({ name: "home" });
+    },
+  },
+};
 </script>
 
 <style>

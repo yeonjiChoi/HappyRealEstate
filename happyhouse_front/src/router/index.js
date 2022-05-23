@@ -17,20 +17,26 @@ const routes = [
 
   // 로그인 로그아웃
   {
-    path: "/login",
-    name: "login",
-    component: () => import("@/components/Member/MemberLogin.vue"),
-  },
-  {
-    path: "/register",
-    name: "register",
-    component: () => import("@/components/Member/MemberRegister.vue"),
-  },
-  //회원 관리
-  {
-    path: "/Member",
-    name: "member",
+    path: "/user",
+    name: "user",
     component: () => import("@/views/MemberView.vue"),
+    children: [
+      {
+        path: "login",
+        name: "login",
+        component: () => import("@/components/Member/MemberLogin.vue"),
+      },
+      {
+        path: "register",
+        name: "register",
+        component: () => import("@/components/Member/MemberRegister.vue"),
+      },
+      {
+        path: "memberInfo",
+        name: "memberInfo",
+        component: () => import("@/components/Member/MemberMyPage.vue"),
+      },
+    ],
   },
   // 공지사항
   {

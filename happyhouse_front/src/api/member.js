@@ -23,12 +23,15 @@ function checkId(userId, success, fail) {
 // 회원 인증
 //function MemberAuth() {}
 // 로그인
-// function login(userId, succes, fail) {
-//   api.post(`/user/login`).then(succes).catch(fail);
-// }
-// async function findById(userid, success, fail) {
-//   api.defaults.headers["access-token"] = sessionStorage.getItem("access-token");
-//   await api.get(`/user/info/${userid}`).then(success).catch(fail);
-// }
+async function login(Member, succes, fail) {
+  await api
+    .post(`/user/login`, JSON.stringify(Member))
+    .then(succes)
+    .catch(fail);
+}
+async function findById(userId, success, fail) {
+  api.defaults.headers["access-token"] = sessionStorage.getItem("access-token");
+  await api.get(`/user/info/${userId}`).then(success).catch(fail);
+}
 
-export { MemberRegist, checkId };
+export { MemberRegist, checkId, login, findById };
