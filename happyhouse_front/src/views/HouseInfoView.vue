@@ -1,26 +1,33 @@
 <template>
   <div>
-    <h2>HouseInfo</h2>
-    <div class="container">
+    <b-container>
+      <h2>HouseInfo</h2>
       <b-row>
-        <b-col lg="3">
-          <router-view></router-view>
-        </b-col>
-        <b-col width="200px">
-          <basic-map></basic-map>
+        <b-col>
+          <house-info-search-bar></house-info-search-bar>
         </b-col>
       </b-row>
-    </div>
+      <b-row>
+        <b-col cols="6" align="left">
+          <house-info-list></house-info-list>
+        </b-col>
+        <b-col cols="6">
+          <house-info-detail></house-info-detail>
+        </b-col>
+      </b-row>
+    </b-container>
     <footer-bar></footer-bar>
   </div>
 </template>
 
 <script>
 import FooterBar from "@/components/FooterBar.vue";
-import BasicMap from "@/components/BasicMap.vue";
+import HouseInfoList from "@/components/House/HouseInfoList.vue";
+import HouseInfoSearchBar from "@/components/House/HouseInfoSearchBar.vue";
+import HouseInfoDetail from "@/components/House/HouseInfoDetail.vue";
 export default {
-  components: { FooterBar, BasicMap },
-  comments: { FooterBar },
+  name: "HouseInfoView",
+  components: { FooterBar, HouseInfoSearchBar, HouseInfoList, HouseInfoDetail },
 };
 </script>
 
