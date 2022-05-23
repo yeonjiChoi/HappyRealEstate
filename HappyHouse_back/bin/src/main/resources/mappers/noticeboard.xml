@@ -1,0 +1,41 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.ssafy.happyhouse.mapper.NoticeBoardMapper">
+
+	<!-- 공지사항 글 전체 조회 -->
+	<select id="selectNoticeBoard" resultType="noticeBoardDto">
+		select noticeNo, title, content, userId, regDate
+		from noticeboard
+		order by noticeNo desc
+	</select>
+
+	<!-- 공지사항 글 상세 조회 -->
+	<select id="selectNoticeBoardByNo" resultType="noticeBoardDto">
+		select noticeNo, title, content, userId, regDate
+		from noticeboard
+		where noticeNo = #{noticeNo}
+	</select>
+		
+	<!-- 공지사항 등록 -->
+	<insert id="insertNoticeBoard" parameterType="noticeBoardDto">
+		insert into noticeboard(title, content, userId, regDate)
+		values (#{title}, #{content}, #{userId}, now())
+	</insert>
+	
+	<!-- 공지사항 수정 -->
+	<update id="updateNoticeBoard" parameterType="noticeBoardDto">
+		update noticeboard
+		set title = #{title}, content = #{content}
+		where noticeNo = #{noticeNo}
+	</update>
+	
+	<!-- 공지사항 삭제 -->
+	<delete id="deleteNoticeBoard" parameterType="int">
+		delete 
+		from noticeboard
+		where noticeNo = #{noticeNo}
+	</delete>
+	
+</mapper>

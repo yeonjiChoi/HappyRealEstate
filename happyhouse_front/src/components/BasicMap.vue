@@ -11,7 +11,6 @@ export default {
     if (window.kakao && window.kakao.maps) {
       this.initMap();
     } else {
-      console.log("Error");
       const script = document.createElement("script");
       /* global kakao */
       script.onload = () => kakao.maps.load(this.initMap);
@@ -35,8 +34,8 @@ export default {
 
 <style scoped>
 #map {
-  width: 400px;
-  height: 500px;
+  width: 100%;
+  height: 800px;
   border: 1px #a8a8a8 solid;
 }
 </style>

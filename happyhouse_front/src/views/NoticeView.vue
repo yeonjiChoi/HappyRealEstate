@@ -1,8 +1,10 @@
 <template>
   <div>
-    <h2>NOTICE</h2>
-    <router-view></router-view>
-    <footer-bar></footer-bar>
+    <div class="container">
+      <h2>NOTICE</h2>
+      <router-view></router-view>
+      <footer-bar></footer-bar>
+    </div>
   </div>
 </template>
 

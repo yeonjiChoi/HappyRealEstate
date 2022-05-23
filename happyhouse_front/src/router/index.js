@@ -1,7 +1,6 @@
 import Vue from "vue";
 import VueRouter from "vue-router";
 import HomeView from "../views/HomeView.vue";
-import LoginView from "@/views/LoginView.vue";
 import NoticeList from "@/components/notice/NoticeList.vue";
 import NoticeDelete from "@/components/notice/NoticeDelete.vue";
 import NoticeDetail from "@/components/notice/NoticeDetail.vue";
@@ -20,7 +19,13 @@ const routes = [
   {
     path: "/login",
     name: "login",
-    component: LoginView,
+    component: () => import("@/components/Member/MemberLogin.vue"),
+  },
+  //회원 관리
+  {
+    path: "/Member",
+    name: "member",
+    component: () => import("@/views/MemberView.vue"),
   },
   // 공지사항
   {

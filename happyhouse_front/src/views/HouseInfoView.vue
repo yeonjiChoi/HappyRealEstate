@@ -6,7 +6,7 @@
         <b-col lg="3">
           <router-view></router-view>
         </b-col>
-        <b-col>
+        <b-col width="200px">
           <basic-map></basic-map>
         </b-col>
       </b-row>
