@@ -11,9 +11,7 @@ var marker;
 
 export default {
   data() {
-    return {
-      marker: { lat: null, lng: null },
-    };
+    return {};
   },
   props: {
     house: Object,
@@ -26,7 +24,7 @@ export default {
       /* global kakao */
       script.onload = () => kakao.maps.load(this.initMap);
       script.src =
-        "//dapi.kakao.com/v2/maps/sdk.js?autoload=false&appkey=a862f479698aefc4dea86ea0dc58a20a";
+        "//dapi.kakao.com/v2/maps/sdk.js?autoload=false&appkey=a0907e584ee8c57ddcabc138315de0f5";
       document.head.appendChild(script);
     }
   },

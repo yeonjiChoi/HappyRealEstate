@@ -1,7 +1,10 @@
 <template>
   <b-container v-if="house" class="bv-example-row">
     <b-row>
-      <b-col>{{ house.aptName }} 아파트 거래 정보</b-col>
+      <b-col cols="10">{{ house.aptName }} 아파트 거래 정보</b-col>
+      <b-col cols="2"
+        ><b-icon icon="bookmark-heart" @click="setInterestApt"></b-icon
+      ></b-col>
     </b-row>
     <b-row>
       <basic-map :house="house" />
@@ -58,12 +61,22 @@
 <script>
 import HouseDealListItem from "@/components/House/HouseDealListItem.vue";
 import BasicMap from "@/components/BasicMap.vue";
-import { mapMutations, mapState } from "vuex";
+import { mapActions, mapMutations, mapState } from "vuex";
 
 const houseStore = "houseStore";
+const memberStore = "memberStore";
+const interestStore = "interestStore";
 
 export default {
   name: "HouseDetail",
+  data() {
+    return {
+      interestApt: {
+        userId: null,
+        aptCode: null,
+      },
+    };
+  },
   created() {
     this.CLEAR_HOUSE();
   },
@@ -72,10 +85,25 @@ export default {
     BasicMap,
   },
   computed: {
+    ...mapState(memberStore, ["userInfo"]),
     ...mapState(houseStore, ["houseDeals", "house"]),
   },
   methods: {
     ...mapMutations(houseStore, ["CLEAR_HOUSE"]),
+    ...mapActions(interestStore, ["setInterApt"]),
+
+    setInterestApt() {
+      if (this.userInfo != null) {
+        this.interestApt = {
+          userId: this.userInfo.userId,
+          aptCode: this.house.aptCode,
+        };
+        console.log("setInterApt 호출 : ", this.interestApt);
+        this.setInterApt(this.interestApt);
+      } else {
+        alert("로그인 후 이용해주세요");
+      }
+    },
   },
 };
 </script>

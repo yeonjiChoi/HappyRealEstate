@@ -4,7 +4,6 @@ import {
   dongList,
   houseList,
   houseDealList,
-  insertInterestArea,
 } from "@/api/house.js";
 
 const houseStore = {
@@ -144,18 +143,6 @@ const houseStore = {
     },
     setLatLng: ({ commit }, house) => {
       commit("SET_LAT_LNG", house);
-    },
-
-    setInterestArea: ({ commit }, interestArea) => {
-      insertInterestArea(
-        interestArea,
-        ({ data }) => {
-          if (data == "success") commit("SET_INTEREST_AREA");
-        },
-        (error) => {
-          console.log(error);
-        },
-      );
     },
   },
 };

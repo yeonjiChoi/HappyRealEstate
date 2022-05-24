@@ -28,6 +28,8 @@
 <script>
 import { mapState, mapActions, mapMutations } from "vuex";
 const houseStore = "houseStore";
+const memberStore = "memberStore";
+const interestStore = "interestStore";
 
 export default {
   name: "HouseInfoSearchBar",
@@ -43,6 +45,7 @@ export default {
     };
   },
   computed: {
+    ...mapState(memberStore, ["userInfo"]),
     ...mapState(houseStore, ["sidos", "guguns", "dongs", "houses"]),
   },
   created() {
@@ -55,8 +58,8 @@ export default {
       "getGugun",
       "getDong",
       "getHouseList",
-      "setInterestArea",
     ]),
+    ...mapActions(interestStore, ["setInterArea"]),
     ...mapMutations(houseStore, [
       "CLEAR_SIDO_LIST",
       "CLEAR_GUGUN_LIST",
@@ -84,8 +87,18 @@ export default {
 
     setInterestArea() {
       if (this.dongCode) {
-        this.interestArea = { userId: "ssafy", dongCode: this.dongCode };
-        this.setInterestArea(this.interestArea);
+        if (this.userInfo != null) {
+          this.interestArea = {
+            userId: this.userInfo.userId,
+            dongCode: this.dongCode,
+          };
+          console.log("setInterArea ", this.interestArea);
+          this.setInterArea(this.interestArea);
+        } else {
+          alert("로그인 후 이용해주세요");
+        }
+      } else {
+        alert("동을 선택해주세요");
       }
     },
   },

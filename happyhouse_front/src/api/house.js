@@ -23,15 +23,4 @@ function houseDealList(params, success, fail) {
   api.get(`/map/deal`, { params: params }).then(success).catch(fail);
 }
 
-function insertInterestArea(params, success, fail) {
-  api.post(`/interest/area`, { params }).then(success).catch(fail);
-}
-
-export {
-  sidoList,
-  gugunList,
-  dongList,
-  houseList,
-  houseDealList,
-  insertInterestArea,
-};
+export { sidoList, gugunList, dongList, houseList, houseDealList };
