@@ -2,12 +2,44 @@ import Vue from "vue";
 import VueRouter from "vue-router";
 import HomeView from "../views/HomeView.vue";
 import NoticeList from "@/components/notice/NoticeList.vue";
-import NoticeDelete from "@/components/notice/NoticeDelete.vue";
 import NoticeDetail from "@/components/notice/NoticeDetail.vue";
 import NoticeModify from "@/components/notice/NoticeModify.vue";
-import NoticeWrite from "@/components/notice/NoticeWrite.vue";
+import store from "@/store/index.js";
 Vue.use(VueRouter);
+const onlyAuthUser = async (to, from, next) => {
+  // console.log(store);
+  const checkUserInfo = store.getters["memberStore/checkUserInfo"];
+  const getUserInfo = store._actions["memberStore/getUserInfo"];
+  let token = sessionStorage.getItem("access-token");
 
+  if (checkUserInfo == null && token) {
+    await getUserInfo(token);
+  }
+  if (checkUserInfo === null) {
+    alert("로그인이 필요한 페이지입니다..");
+    next({ name: "login" });
+  } else {
+    next();
+  }
+};
+const isAdmin = async (to, from, next) => {
+  // console.log(store);
+  const checkUserInfo = store.getters["memberStore/checkUserInfo"];
+  const getUserInfo = store._actions["memberStore/getUserInfo"];
+  let token = sessionStorage.getItem("access-token");
+
+  if (checkUserInfo == null && token) {
+    await getUserInfo(token);
+  }
+  if (checkUserInfo === null) {
+    alert("로그인이 필요한 페이지입니다..");
+    next({ name: "login" });
+  } else if (checkUserInfo.authority === "USER") {
+    alert("권한이 없습니다");
+  } else {
+    next();
+  }
+};
 const routes = [
   {
     path: "/",
@@ -51,24 +83,23 @@ const routes = [
         component: NoticeList,
       },
       {
-        path: "/noticeDelete",
-        name: "noticeDelete",
-        component: NoticeDelete,
-      },
-      {
-        path: "/noticeDetail",
+        path: "noticeDetail/:noticeNo",
         name: "noticeDetail",
         component: NoticeDetail,
       },
       {
-        path: "/noticeModify",
+        path: "noticeModify/:noticeNo",
         name: "noticeModify",
+        beforeEnter: isAdmin,
+        isAdmin,
         component: NoticeModify,
       },
       {
-        path: "/noticeWrite",
+        path: "noticeWrite",
         name: "noticeWrite",
-        component: NoticeWrite,
+        beforeEnter: isAdmin,
+        isAdmin,
+        component: () => import("@/components/notice/NoticeWrite.vue"),
       },
     ],
   },
@@ -85,23 +116,25 @@ const routes = [
         component: () => import("@/components/QnA/QnAList.vue"),
       },
       {
-        path: "/QnADelete",
+        path: "QnADelete",
         name: "QnADelete",
         component: () => import("@/components/QnA/QnADelete.vue"),
       },
       {
-        path: "/QnADetail",
+        path: "QnADetail",
         name: "QnADetail",
         component: () => import("@/components/QnA/QnADetail.vue"),
       },
       {
-        path: "/QnAModify",
+        path: "QnAModify",
         name: "QnAModify",
+        beforeEnter: onlyAuthUser,
         component: () => import("@/components/QnA/QnAModify.vue"),
       },
       {
-        path: "/QnAWrite",
+        path: "QnAWrite",
         name: "QnAWrite",
+        beforeEnter: onlyAuthUser,
         component: () => import("@/components/QnA/QnAWrite.vue"),
       },
     ],

@@ -12,6 +12,7 @@
 import FooterBar from "@/components/FooterBar.vue";
 
 export default {
+  name: "noticeView",
   components: { FooterBar },
   comments: { FooterBar },
 };
