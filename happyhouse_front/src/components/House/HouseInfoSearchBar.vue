@@ -58,6 +58,7 @@ export default {
       "getGugun",
       "getDong",
       "getHouseList",
+      "getTotAptCnt",
     ]),
     ...mapActions(interestStore, ["setInterArea"]),
     ...mapMutations(houseStore, [
@@ -82,7 +83,9 @@ export default {
     },
 
     searchApt() {
-      if (this.dongCode) this.getHouseList(this.dongCode);
+      if (this.dongCode) {
+        this.getHouseList(this.dongCode);
+      }
     },
 
     setInterestArea() {

@@ -1,6 +1,9 @@
 <template>
   <b-container class="bv-example-row mt-3">
-    <b-row class="mb-1">
+    <b-row
+      class="mb-1"
+      v-if="userInfo != null && userInfo.authority === 'ADMIN'"
+    >
       <b-col class="text-right">
         <b-button @click="moveWrite()">글쓰기</b-button>
       </b-col>
@@ -10,11 +13,19 @@
         <b-table
           striped
           hover
+          :per-page="perPage"
+          :current-page="currentPage"
           :items="notices"
           :fields="fields"
           @row-clicked="viewNotice"
         >
         </b-table>
+        <b-pagination
+          v-model="currentPage"
+          :total-rows="rows"
+          :per-page="perPage"
+          aria-controls="my-table"
+        ></b-pagination>
       </b-col>
     </b-row>
   </b-container>
@@ -22,6 +33,9 @@
 
 <script>
 import { listNotice } from "@/api/notice";
+import { mapState } from "vuex";
+
+const memberStore = "memberStore";
 
 export default {
   name: "NoticeList",
@@ -34,17 +48,12 @@ export default {
         { key: "userId", label: "작성자", tdClass: "tdClass" },
         { key: "regDate", label: "작성일", tdClass: "tdClass" },
       ],
+      perPage: 10,
+      currentPage: 1,
     };
   },
   created() {
-    let param = {
-      pg: 1,
-      spp: 20,
-      key: null,
-      word: null,
-    };
     listNotice(
-      param,
       (response) => {
         this.notices = response.data;
       },
@@ -62,6 +71,12 @@ export default {
         name: "noticeDetail",
         params: { noticeNo: notice.noticeNo },
       });
+    },
+  },
+  computed: {
+    ...mapState(memberStore, ["userInfo"]),
+    rows() {
+      return this.notices.length;
     },
   },
 };

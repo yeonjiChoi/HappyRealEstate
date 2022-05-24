@@ -36,4 +36,18 @@
 		where qnaNo = #{qnaNo}
 	</delete>
 	
+	<select id="selectQnaBoardPagination" parameterType="map" resultType="qnaBoardDto">
+		select *
+		from qnaboard 
+		order by regDate desc
+		limit #{limit} offset #{offset}
+	</select>
+	
+	<select id="selectQnaTotalCount" resultType="int">
+		select count(*)
+		from qnaboard
+	</select>
+	
+	
+	
 </mapper>

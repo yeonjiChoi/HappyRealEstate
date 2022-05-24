@@ -1,9 +1,17 @@
 <template>
-  <div>News</div>
+  <b-container>
+    <div>News</div>
+    <news-list></news-list>
+  </b-container>
 </template>
 
 <script>
-export default {};
+import NewsList from "@/components/News/NewsList.vue";
+export default {
+  components: {
+    NewsList,
+  },
+};
 </script>
 
 <style></style>

@@ -19,8 +19,27 @@ function houseList(params, success, fail) {
   api.get(`/map/apt`, { params: params }).then(success).catch(fail);
 }
 
+function houseListPagination(params, success, fail) {
+  api
+    .get(`/map/apt/${params.dongCode}/${params.page}`)
+    .then(success)
+    .catch(fail);
+}
+
 function houseDealList(params, success, fail) {
   api.get(`/map/deal`, { params: params }).then(success).catch(fail);
 }
 
-export { sidoList, gugunList, dongList, houseList, houseDealList };
+function getTotalAptCount(params, success, fail) {
+  api.get(`/map/apt/${params.dongCode}`).then(success).catch(fail);
+}
+
+export {
+  sidoList,
+  gugunList,
+  dongList,
+  houseList,
+  houseDealList,
+  houseListPagination,
+  getTotalAptCount,
+};

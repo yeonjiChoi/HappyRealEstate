@@ -204,7 +204,15 @@ export default {
       this.markers = [];
     },
     displayPlaceInfo(place) {
-      let content = '<div class="placeinfo">';
+      let content =
+        '<div class="placeinfo">' +
+        '   <a class="title" href="' +
+        place.place_url +
+        '" target="_blank" title="' +
+        place.place_name +
+        '">' +
+        place.place_name +
+        "</a>";
       if (place.road_address_name) {
         content +=
           '    <span title="' +

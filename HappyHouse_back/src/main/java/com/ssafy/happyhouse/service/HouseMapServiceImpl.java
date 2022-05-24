@@ -1,10 +1,13 @@
 package com.ssafy.happyhouse.service;
 
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import com.ssafy.happyhouse.dto.AptSearchDto;
 import com.ssafy.happyhouse.dto.HouseDto;
 import com.ssafy.happyhouse.dto.HouseInfoDto;
 import com.ssafy.happyhouse.dto.SidoGugunDongCodeDto;
@@ -39,6 +42,16 @@ public class HouseMapServiceImpl implements HouseMapService {
 	@Override
 	public List<HouseInfoDto> getDealInAPt(String aptCode) {
 		return houseMapMapper.getDealInAPt(aptCode);
+	}
+
+	@Override
+	public List<HouseDto> getAptInDongPage(Map<String, Object> map) {
+		return houseMapMapper.getAptInDongPagination(map);
+	}
+
+	@Override
+	public Integer getTotalAptCount(String dongCode) {
+		return houseMapMapper.getTotalAptCount(dongCode);
 	}
 
 }

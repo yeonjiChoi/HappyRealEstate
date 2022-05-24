@@ -1,6 +1,8 @@
 package com.ssafy.happyhouse.controller;
 
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -8,10 +10,13 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PathVariable;
+import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 
+import com.ssafy.happyhouse.dto.AptSearchDto;
 import com.ssafy.happyhouse.dto.HouseDto;
 import com.ssafy.happyhouse.dto.HouseInfoDto;
 import com.ssafy.happyhouse.dto.SidoGugunDongCodeDto;
@@ -55,6 +60,24 @@ public class HouseMapController {
 		logger.debug("apt 호출 - dongCode : {}", dong);
 		return new ResponseEntity<List<HouseDto>>(houseMapService.getAptInDong(dong), HttpStatus.OK);
 	}
+	
+	@ApiOperation(value = "아파트 정보 반환", notes = "동코드에 해당하는 모든 아파트 정보를 반환한다.", response=List.class)
+	@GetMapping("/apt/{dongCode}/{page}")
+	public ResponseEntity<List<HouseDto>> aptPage(@PathVariable("dongCode") String dongCode, @PathVariable("page") int page) throws Exception {
+		Map<String, Object> map = new HashMap<String, Object>();
+		map.put("dongCode", dongCode);
+		map.put("page", page);
+		logger.debug("aptPage 호출 - {}", map);
+		return new ResponseEntity<List<HouseDto>>(houseMapService.getAptInDongPage(map), HttpStatus.OK);
+	}
+	
+	@ApiOperation(value = "아파트 개수 반환", notes = "동코드에 해당하는 아파트의 개수를 반환한다.", response=Integer.class)
+	@GetMapping("/apt/{dongCode}")
+	public ResponseEntity<Integer> getAptCount(@PathVariable("dongCode") String dongCode) throws Exception {
+		logger.debug("getAptCount 호출 - {}", dongCode);
+		return new ResponseEntity<Integer>(houseMapService.getTotalAptCount(dongCode), HttpStatus.OK);
+	}
+	
 	
 	@ApiOperation(value = "아파트 매매 정보 반환", notes = "아파트 코드에 해당하는 모든 아파트 매매 정보를 반환한다.", response=List.class)
 	@GetMapping("/deal")

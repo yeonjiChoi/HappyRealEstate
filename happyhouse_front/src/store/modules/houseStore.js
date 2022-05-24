@@ -4,6 +4,8 @@ import {
   dongList,
   houseList,
   houseDealList,
+  houseListPagination,
+  getTotalAptCount,
 } from "@/api/house.js";
 
 const houseStore = {
@@ -16,6 +18,7 @@ const houseStore = {
     houseDeals: [],
     house: null,
     latlng: { lat: null, lng: null },
+    totalAptCnt: null,
   },
   getters: {},
 
@@ -67,6 +70,10 @@ const houseStore = {
     SET_LAT_LNG: (state, house) => {
       state.latlng = [{ lat: house.lat, lng: house.lng }];
       console.log("SET LATLNG ", state.latlng);
+    },
+    SET_TOTAL_APT_CNT: (state, aptCnt) => {
+      state.totalAptCnt = aptCnt;
+      console.log("SEt_TOTAL_APT_CNT", aptCnt);
     },
   },
 
@@ -125,6 +132,24 @@ const houseStore = {
         },
       );
     },
+    getHouseList2: ({ commit }, dongCode) => {
+      // vue cli enviroment variables 검색
+      //.env.local file 생성.
+      // 반드시 VUE_APP으로 시작해야 한다.
+      const params = { page: 0, dongCode: dongCode };
+      console.log(params);
+      houseListPagination(
+        params,
+        ({ data }) => {
+          //   console.log(response.data.response.body.items.item);
+          commit("SET_HOUSE_LIST", data);
+          console.log(data);
+        },
+        (error) => {
+          console.log(error);
+        },
+      );
+    },
     detailHouse: ({ commit }, house) => {
       // 나중에 house.일련번호를 이용하여 API 호출
       commit("SET_DETAIL_HOUSE", house);
@@ -141,8 +166,22 @@ const houseStore = {
         },
       );
     },
+
     setLatLng: ({ commit }, house) => {
       commit("SET_LAT_LNG", house);
+    },
+
+    getTotAptCnt: ({ commit }, dongCode) => {
+      const params = { dongCode: dongCode };
+      getTotalAptCount(
+        params,
+        ({ data }) => {
+          commit("SET_TOTAL_APT_CNT", data);
+        },
+        (error) => {
+          console.log(error);
+        },
+      );
     },
   },
 };

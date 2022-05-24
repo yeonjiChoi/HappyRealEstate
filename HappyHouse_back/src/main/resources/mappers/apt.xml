@@ -37,6 +37,19 @@
 		order by aptName;
 	</select>
 	
+	<select id="getAptInDongPagination" parameterType="map" resultType="houseDto">
+		select distinct aptCode, aptName, dongCode, dongName, lat, lng
+		from houseinfo
+		where dongCode = #{dongCode}
+		order by aptName
+		limit 10 offset #{page};
+	</select>
+	
+	<select id="getTotalAptCount" parameterType="string" resultType="int">
+		select count(*)
+		from houseinfo
+		where dongCode = #{dongCode}
+	</select>
 	
 	<select id="getDealInAPt" parameterType="string"
 		resultType="houseInfoDto">

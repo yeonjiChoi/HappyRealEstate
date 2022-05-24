@@ -1,6 +1,9 @@
 <template>
   <b-container class="bv-example-row mt-3">
-    <b-row class="mb-1">
+    <b-row
+      class="mb-1"
+      v-if="userInfo != null && userInfo.authority === 'ADMIN'"
+    >
       <b-col class="text-left">
         <b-button @click="listNotice">목록</b-button>
       </b-col>
@@ -32,6 +35,9 @@
 <script>
 import { getNotice, deleteNotice } from "@/api/notice";
 import store from "@/store/index.js";
+import { mapState } from "vuex";
+
+const memberStore = "memberStore";
 export default {
   name: "NoticeDetail",
   data() {
@@ -40,6 +46,7 @@ export default {
     };
   },
   computed: {
+    ...mapState(memberStore, ["userInfo"]),
     message() {
       if (this.notice.content)
         return this.notice.content.split("\n").join("<br>");

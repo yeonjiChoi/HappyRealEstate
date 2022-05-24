@@ -57,6 +57,9 @@
                   >관심 지역</router-link
                 >
               </li>
+              <li class="nav-item">
+                <router-link :to="{ name: 'News' }">뉴스</router-link>
+              </li>
             </ul>
           </div>
         </b-row>

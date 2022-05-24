@@ -157,29 +157,34 @@ const routes = [
     path: "/InterestHouse",
     name: "InterestHouse",
     component: () => import("@/views/InterestHouseView.vue"),
-    redirect: "/InterestHouse/list",
-    children: [
-      {
-        path: "list",
-        name: "InterestHouseList",
-        component: () =>
-          import("@/components/InterestHouse/InterestHouseList.vue"),
-      },
-    ],
+    // redirect: "/InterestHouse/list",
+    // children: [
+    //   {
+    //     path: "list",
+    //     name: "InterestHouseList",
+    //     component: () =>
+    //       import("@/components/InterestHouse/InterestHouseList.vue"),
+    //   },
+    // ],
   },
   {
     path: "/InterestArea",
     name: "InterestArea",
     component: () => import("@/views/InterestAreaView.vue"),
-    redirect: "/InterestArea/list",
-    children: [
-      {
-        path: "list",
-        name: "InterestAreaList",
-        component: () =>
-          import("@/components/InterestArea/InterestAreaList.vue"),
-      },
-    ],
+    // redirect: "/InterestArea/list",
+    // children: [
+    //   {
+    //     path: "list",
+    //     name: "InterestAreaList",
+    //     component: () =>
+    //       import("@/components/InterestArea/InterestAreaList.vue"),
+    //   },
+    // ],
+  },
+  {
+    path: "/News",
+    name: "News",
+    component: () => import("@/views/NewsView.vue"),
   },
 ];
 
