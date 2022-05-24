@@ -49,7 +49,18 @@ export default {
     return {
       dongList: [],
       countList: [],
-      bgColor: [],
+      bgColor: [
+        "#D6EAF8",
+        "#AED6F1",
+        "#85C1E9",
+        "#5DADE2",
+        "#3498DB",
+        "#2E86C1",
+        "#2874A6",
+        "#21618C",
+        "#1B4F72",
+        "#184665",
+      ],
       chartData: {},
       // chartData: {
       //   labels: [],
@@ -77,8 +88,8 @@ export default {
             if (i == 10) break;
             this.dongList.push(data[i].dongName);
             this.countList.push(data[i].count);
-            console.log(this.makeColor());
-            this.bgColor.push(this.makeColor());
+            // console.log(this.makeColor());
+            // this.bgColor.push(this.makeColor());
           }
           this.chartData = {
             labels: this.dongList,
@@ -96,7 +107,7 @@ export default {
       );
     },
     makeColor() {
-      return "#" + Math.floor(Math.random() * 16777215).toString(16);
+      return "#11C" + Math.floor(Math.random() * 1000);
     },
   },
 };
