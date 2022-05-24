@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" 
+	"http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="com.ssafy.happyhouse.mapper.ChartMapper">
+
+	<select id="selectData" resultType="chartDto">
+		select distinct i.dongCode, d.dongName, count(i.dongCode) as count
+		from interestarea i join dongCode d
+		on i.dongCode = d.dongCode
+		group by i.dongCode
+		order by count desc
+	</select>
+
+</mapper>
+	

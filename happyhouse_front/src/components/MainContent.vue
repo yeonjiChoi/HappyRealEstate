@@ -7,14 +7,20 @@
     <b-container>
       <b-row>
         <b-col>NOTICE</b-col>
-        <b-col>CHART</b-col>
+        <b-col> <doughnut-chart /></b-col>
       </b-row>
     </b-container>
   </div>
 </template>
 
 <script>
-export default {};
+import DoughnutChart from "@/components/DoughnutChart.vue";
+
+export default {
+  components: {
+    DoughnutChart,
+  },
+};
 </script>
 
 <style>
