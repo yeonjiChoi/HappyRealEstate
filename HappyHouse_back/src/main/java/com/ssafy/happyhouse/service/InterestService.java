@@ -14,6 +14,6 @@ public interface InterestService {
 	boolean deleteInterestArea(int no);
 	boolean registInterestApt(InterestAptDto interestAptDto);
 	List<HouseInfoDto> retrieveInterestApt(String userId);
-	boolean deleteInterestApt(InterestAptDto interestAptDto);
+	boolean deleteInterestApt(int no);
 
 }

@@ -65,28 +65,28 @@ public class InterestController {
 		return new ResponseEntity<String>(FAIL, HttpStatus.NO_CONTENT);
 	}
 	
-	@ApiOperation(value = "관심 매물 등록", notes = "회원 아이디와 아파트 거래 코드를 받아 관심 지역으로 등록한다. 성공 여부에 따라 'success' 또는 'fail'을 반환한다.", response=String.class)
+	@ApiOperation(value = "관심 아파트 등록", notes = "회원 아이디와 아파트 코드를 받아 관심 지역으로 등록한다. 성공 여부에 따라 'success' 또는 'fail'을 반환한다.", response=String.class)
 	@PostMapping("/apt")
 	public ResponseEntity<String> registInterestApt(@RequestBody InterestAptDto interestAptDto) {
-		logger.debug("registInterestApt 호출");
+		logger.debug("registInterestApt 호출 {}", interestAptDto);
 		if(interestService.registInterestApt(interestAptDto)) {
 			return new ResponseEntity<String>(SUCCESS, HttpStatus.OK);
 		}
 		return new ResponseEntity<String>(FAIL, HttpStatus.NO_CONTENT);
 	}
 	
-	@ApiOperation(value = "관심 아파트 매물 정보 반환", notes = "회원 아이디를 받아 회원이 등록한 관심 아파트 매물 정보를 반환한다.", response=List.class)
+	@ApiOperation(value = "관심 아파트 정보 반환", notes = "회원 아이디를 받아 회원이 등록한 관심 아파트 정보를 반환한다.", response=List.class)
 	@GetMapping("/apt")
 	public ResponseEntity<List<HouseInfoDto>> retrieveInterestApt(@RequestParam("userId") String userId) {
 		logger.debug("retrieveInterestApt 호출");
 		return new ResponseEntity<List<HouseInfoDto>>(interestService.retrieveInterestApt(userId), HttpStatus.OK);
 	}
 	
-	@ApiOperation(value = "관심 아파트 매물 해제", notes = "회원이 등록한 관심 아파트 매물 정보를 해제한다.", response=String.class)
-	@DeleteMapping("/apt")
-	public ResponseEntity<String> deleteInterestApt(@RequestBody @ApiParam(value = "아파트 매물 코드인 aptNo(아파트 번호 no 아님)와 회원 아이디 전달", required = true)  InterestAptDto interestAptDto) {
+	@ApiOperation(value = "관심 아파트 해제", notes = "회원이 등록한 관심 아파트 정보를 해제한다.", response=String.class)
+	@DeleteMapping("/apt/{no}")
+	public ResponseEntity<String> deleteInterestApt(@PathVariable("no") int no) {
 		logger.debug("deleteInterestApt - 호출");
-		if (interestService.deleteInterestApt(interestAptDto)) {
+		if (interestService.deleteInterestApt(no)) {
 			return new ResponseEntity<String>(SUCCESS, HttpStatus.OK);
 		}
 		return new ResponseEntity<String>(FAIL, HttpStatus.NO_CONTENT);

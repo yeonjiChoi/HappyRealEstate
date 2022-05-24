@@ -20,6 +20,6 @@ public interface InterestMapper {
 	int checkInterestApt(InterestAptDto interestAptDto);
 	int insertInterestApt(InterestAptDto interestAptDto);
 	List<HouseInfoDto> selectInterestApt(String userId);
-	int deleteInterestApt(InterestAptDto interestAptDto);
+	int deleteInterestApt(int no);
 
 }

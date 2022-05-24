@@ -6,7 +6,7 @@ import io.swagger.annotations.ApiModelProperty;
 @ApiModel(value = "HouseInfoDto : 아파트 거래 정보", description = "아파트 상세 거래 정보를 나타낸다.")
 public class HouseInfoDto {
 	
-	@ApiModelProperty(value = "아파트 거래 코드 ")
+	@ApiModelProperty(value = "번호")
 	private int no;
 	@ApiModelProperty(value = "아파트 코드")
 	private String aptCode;

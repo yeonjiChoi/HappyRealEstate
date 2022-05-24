@@ -3,14 +3,14 @@ package com.ssafy.happyhouse.dto;
 import io.swagger.annotations.ApiModel;
 import io.swagger.annotations.ApiModelProperty;
 
-@ApiModel(value = "InterestAptDto : 관심 매물 정보", description = "사용자의 관심 매물 정보를 나타낸다")
+@ApiModel(value = "InterestAptDto : 관심 아파트 정보", description = "사용자의 관심 아파트 정보를 나타낸다")
 public class InterestAptDto {
 	@ApiModelProperty(value = "관심 매물 번호")
 	private int no;
 	@ApiModelProperty(value = "회원 아이디")
 	private String userId;
-	@ApiModelProperty(value = "아파트 거래 코드")
-	private String aptNo;
+	@ApiModelProperty(value = "아파트 코드")
+	private int aptCode;
 	@ApiModelProperty(value = "관심 매물 설정일")
 	private String date;
 	
@@ -26,11 +26,12 @@ public class InterestAptDto {
 	public void setUserId(String userId) {
 		this.userId = userId;
 	}
-	public String getAptNo() {
-		return aptNo;
+
+	public int getAptCode() {
+		return aptCode;
 	}
-	public void setAptNo(String aptNo) {
-		this.aptNo = aptNo;
+	public void setAptCode(int aptCode) {
+		this.aptCode = aptCode;
 	}
 	public String getDate() {
 		return date;
@@ -40,7 +41,7 @@ public class InterestAptDto {
 	}
 	@Override
 	public String toString() {
-		return "InterestAptDto [no=" + no + ", userId=" + userId + ", aptNo=" + aptNo + ", date=" + date + "]";
+		return "InterestAptDto [no=" + no + ", userId=" + userId + ", aptCode=" + aptCode + ", date=" + date + "]";
 	}
 	
 }
