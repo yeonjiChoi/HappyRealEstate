@@ -45,6 +45,13 @@
         <!-- Right aligned nav items -->
         <b-navbar-nav class="ml-auto mr-4">
           <b-nav-form v-if="userInfo">
+            <b-link
+              v-if="userInfo.authority === 'ADMIN'"
+              :to="{ name: 'memberList' }"
+              class="nav-link"
+              >회원 관리</b-link
+            >
+
             <b-link :to="{ name: 'memberInfo' }" class="nav-link"
               >My Page</b-link
             >
