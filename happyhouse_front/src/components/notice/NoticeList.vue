@@ -66,7 +66,7 @@ export default {
       (error) => {
         console.log(error);
         // eslint-disable-next-line
-      }
+      },
     );
   },
   methods: {

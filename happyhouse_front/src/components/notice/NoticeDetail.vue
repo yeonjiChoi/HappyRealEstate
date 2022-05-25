@@ -75,7 +75,7 @@ export default {
       (error) => {
         console.log("공지사항 에러발생!!", error);
         // eslint-disable-next-line
-      }
+      },
     );
   },
   methods: {

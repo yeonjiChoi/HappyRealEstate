@@ -1,18 +1,16 @@
 <template>
-  <div>
-    <h2>QnA</h2>
+  <b-container id="QnAView" class="p-3">
+    <h4><b-icon />Q&A</h4>
     <router-view></router-view>
-    <footer-bar></footer-bar>
-  </div>
+  </b-container>
 </template>
 
 <script>
-import FooterBar from "@/components/FooterBar.vue";
-
-export default {
-  components: { FooterBar },
-  comments: { FooterBar },
-};
+export default {};
 </script>
 
-<style></style>
+<style>
+#QnAView {
+  height: 800px;
+}
+</style>

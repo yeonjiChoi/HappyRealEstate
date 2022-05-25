@@ -5,10 +5,19 @@
         <b-button @click="listQnA">목록</b-button>
       </b-col>
       <b-col class="text-right">
-        <b-button size="sm" @click="moveModifyQnA" class="mr-2"
+        <b-button
+          size="sm"
+          @click="moveModifyQnA"
+          class="mr-2"
+          v-if="userInfo != null && this.QnA.userId === userInfo.userId"
           >글수정</b-button
         >
-        <b-button size="sm" @click="deleteQnA">글삭제</b-button>
+        <b-button
+          size="sm"
+          v-if="userInfo != null && this.QnA.userId === userInfo.userId"
+          @click="deleteQnA"
+          >글삭제</b-button
+        >
       </b-col>
     </b-row>
     <b-row class="mb-1">
@@ -26,8 +35,12 @@
         </b-card>
       </b-col>
     </b-row>
-    <comment-list :qnaNo="qnaNo"></comment-list>
-    <comment-input-list-item :qnaNo="qnaNo"></comment-input-list-item>
+    <template v-if="userInfo != null">
+      <div>
+        <comment-list :qnaNo="qnaNo"></comment-list>
+        <comment-input-list-item :qnaNo="qnaNo"></comment-input-list-item>
+      </div>
+    </template>
   </b-container>
 </template>
 
@@ -35,6 +48,9 @@
 import { getQnA, deleteQnA } from "@/api/QnA";
 import CommentList from "@/components/comment/CommentList.vue";
 import CommentInputListItem from "@/components/comment/CommentInputList.vue";
+import { mapState } from "vuex";
+
+const memberStore = "memberStore";
 export default {
   name: "QnADetail",
 
@@ -46,6 +62,7 @@ export default {
   },
   components: { CommentList, CommentInputListItem },
   computed: {
+    ...mapState(memberStore, ["userInfo"]),
     message() {
       if (this.QnA.content) return this.QnA.content.split("\n").join("<br>");
       return "";
@@ -56,6 +73,7 @@ export default {
       this.$route.params.qnaNo,
       (response) => {
         this.QnA = response.data;
+        console.log(this.QnA.userId);
       },
       (error) => {
         console.log("QnA 에러발생!!", error);
