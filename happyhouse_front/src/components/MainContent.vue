@@ -1,31 +1,57 @@
 <template>
   <div>
-    MainContent
-    <div class="container-sm">
-      <img src="@/assets/mainHouseImage.jpg" alt="mainhouseImage" />
+    <div>
+      <img src="@/assets/main_happyhouse.png" alt="mainhouseImage" />
     </div>
-    <b-container>
+    <b-container fluid class="mt-3 mb-3">
       <b-row>
-        <b-col>NOTICE</b-col>
+        <b-col><main-notice /></b-col>
         <b-col> <doughnut-chart /></b-col>
+        <b-col> <main-news /></b-col>
       </b-row>
     </b-container>
   </div>
 </template>
 
 <script>
-import DoughnutChart from "@/components/DoughnutChart.vue";
+import DoughnutChart from "@/components/Main/DoughnutChart.vue";
+import MainNotice from "@/components/Main/MainNotice.vue";
+import MainNews from "@/components/Main/MainNews.vue";
 
 export default {
+  data() {
+    return {};
+  },
   components: {
     DoughnutChart,
+    MainNotice,
+    MainNews,
   },
+  methods: {},
 };
 </script>
 
-<style>
+<style scoped>
 img {
   width: 100%;
   background-size: cover;
 }
+
+/* .jb-wrap {
+  margin: 10px auto;
+  position: relative;
+}
+.jb-wrap img {
+  width: 100%;
+  vertical-align: middle;
+}
+.jb-text {
+  padding: 5px 10px;
+  text-align: center;
+  position: absolute;
+  top: 80%;
+  left: 50%;
+  font-size: 80px;
+  color: #7c7c7d;
+} */
 </style>

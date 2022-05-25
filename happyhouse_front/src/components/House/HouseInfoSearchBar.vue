@@ -1,28 +1,43 @@
 <template>
-  <b-row class="mt-4 mb-4 text-center">
-    <b-col class="sm-3">
-      <b-form-select
-        v-model="sidoCode"
-        :options="sidos"
-        @change="gugunList"
-      ></b-form-select>
-    </b-col>
-    <b-col class="sm-3">
-      <b-form-select
-        v-model="gugunCode"
-        :options="guguns"
-        @change="dongList"
-      ></b-form-select>
-    </b-col>
-    <b-col class="sm-3">
-      <b-form-select
-        v-model="dongCode"
-        :options="dongs"
-        @change="searchApt"
-      ></b-form-select>
-    </b-col>
-    <b-button @click="setInterestArea">관심지역 등록</b-button>
-  </b-row>
+  <b-container>
+    <b-row v-show="userInfo == null">
+      <b-col
+        ><b-icon icon="info-circle" /> 로그인을 하시면 관심 지역과 관심 매물을
+        등록할 수 있습니다.</b-col
+      >
+    </b-row>
+    <b-row align-h="center" class="mb-5 mt-3">
+      <br />
+      <b-col cols="2" class="sm-3">
+        <b-form-select
+          v-model="sidoCode"
+          :options="sidos"
+          @change="gugunList"
+        ></b-form-select>
+      </b-col>
+      <b-col cols="2" class="sm-3">
+        <b-form-select
+          v-model="gugunCode"
+          :options="guguns"
+          @change="dongList"
+        ></b-form-select>
+      </b-col>
+      <b-col cols="2" class="sm-3">
+        <b-form-select
+          v-model="dongCode"
+          :options="dongs"
+          @change="searchApt"
+        ></b-form-select>
+      </b-col>
+      <b-button
+        variant="outline-secondary"
+        class="ml-3"
+        v-show="userInfo != null"
+        @click="setInterestArea"
+        >관심지역 추가</b-button
+      >
+    </b-row>
+  </b-container>
 </template>
 
 <script>
@@ -90,16 +105,13 @@ export default {
 
     setInterestArea() {
       if (this.dongCode) {
-        if (this.userInfo != null) {
-          this.interestArea = {
-            userId: this.userInfo.userId,
-            dongCode: this.dongCode,
-          };
-          console.log("setInterArea ", this.interestArea);
-          this.setInterArea(this.interestArea);
-        } else {
-          alert("로그인 후 이용해주세요");
-        }
+        this.interestArea = {
+          userId: this.userInfo.userId,
+          dongCode: this.dongCode,
+        };
+        console.log("setInterArea ", this.interestArea);
+        this.setInterArea(this.interestArea);
+        alert("관심 지역에 추가되었습니다");
       } else {
         alert("동을 선택해주세요");
       }
@@ -108,4 +120,8 @@ export default {
 };
 </script>
 
-<style></style>
+<style scoped>
+* {
+  color: #7d7d7d;
+}
+</style>

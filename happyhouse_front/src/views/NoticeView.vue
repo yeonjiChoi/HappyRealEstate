@@ -1,21 +1,18 @@
 <template>
-  <div>
-    <div class="container">
-      <h2>NOTICE</h2>
-      <router-view></router-view>
-      <footer-bar></footer-bar>
-    </div>
-  </div>
+  <b-container id="noticeView" class="p-3">
+    <h4><b-icon icon="megaphone" /> NOTICE</h4>
+    <router-view></router-view>
+  </b-container>
 </template>
 
 <script>
-import FooterBar from "@/components/FooterBar.vue";
-
 export default {
   name: "noticeView",
-  components: { FooterBar },
-  comments: { FooterBar },
 };
 </script>
 
-<style></style>
+<style>
+#noticeView {
+  height: 800px;
+}
+</style>

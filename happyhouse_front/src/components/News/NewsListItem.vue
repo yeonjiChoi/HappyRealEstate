@@ -1,5 +1,5 @@
 <template>
-  <b-media
+  <!-- <b-media
     tag="li"
     @click="moveToNews"
     @mouseover="colorChange(true)"
@@ -11,7 +11,15 @@
     <p class="mb-0">
       {{ news.pubDate | date }}
     </p>
-  </b-media>
+  </b-media> -->
+  <b-row class="mt-2">
+    <b-card align="left" @click="moveToNews">
+      <h5><b-card-text v-html="news.title"> </b-card-text></h5>
+      <hr />
+      <b-card-text v-html="news.description"> </b-card-text>
+      <small class="text-left"> {{ news.pubDate | date }} </small>
+    </b-card>
+  </b-row>
 </template>
 
 <script>
@@ -40,7 +48,7 @@ export default {
 };
 </script>
 
-<style>
+<style scoped>
 .mouse-over-bgcolor {
   background-color: lightblue;
 }

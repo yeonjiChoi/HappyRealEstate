@@ -127,12 +127,14 @@ export default {
       this.addEventHandle(
         this.contentNode,
         "mousedown",
-        kakao.maps.event.preventMap,
+        // eslint-disable-next-line
+        kakao.maps.event.preventMap
       );
       this.addEventHandle(
         this.contentNode,
         "touchstart",
-        kakao.maps.event.preventMap,
+        // eslint-disable-next-line
+        kakao.maps.event.preventMap
       );
       this.placeOverlay.setContent(this.contentNode);
     },
@@ -166,7 +168,8 @@ export default {
       for (let i = 0; i < places.length; i++) {
         const marker = this.addMarker(
           new kakao.maps.LatLng(places[i].y, places[i].x),
-          order,
+          // eslint-disable-next-line
+          order
         );
         (function (marker, place) {
           kakao.maps.event.addListener(marker, "click", function () {
@@ -187,7 +190,8 @@ export default {
         markerImage = new kakao.maps.MarkerImage(
           imageSrc,
           imageSize,
-          imgOptions,
+          // eslint-disable-next-line
+          imgOptions
         ),
         marker = new kakao.maps.Marker({
           position: position,

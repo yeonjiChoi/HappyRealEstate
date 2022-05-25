@@ -31,14 +31,14 @@
 
 	<select id="getAptInDong" parameterType="string"
 		resultType="houseDto">
-		select distinct aptCode, aptName, dongCode, dongName, lat, lng
+		select distinct aptCode, aptName, dongCode, dongName, lat, lng, buildYear, jibun
 		from houseinfo
 		where dongCode = #{dong}
 		order by aptName;
 	</select>
 	
 	<select id="getAptInDongPagination" parameterType="map" resultType="houseDto">
-		select distinct aptCode, aptName, dongCode, dongName, lat, lng
+		select distinct aptCode, aptName, dongCode, dongName, lat, lng, buildYear, jibun
 		from houseinfo
 		where dongCode = #{dongCode}
 		order by aptName

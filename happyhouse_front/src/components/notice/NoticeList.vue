@@ -1,32 +1,38 @@
 <template>
   <b-container class="bv-example-row mt-3">
     <b-row
-      class="mb-1"
+      class="mb-2"
       v-if="userInfo != null && userInfo.authority === 'ADMIN'"
     >
       <b-col class="text-right">
-        <b-button @click="moveWrite()">글쓰기</b-button>
+        <b-button size="sm" variant="outline-secondary" @click="moveWrite()"
+          >공지사항 작성</b-button
+        >
       </b-col>
     </b-row>
     <b-row>
-      <b-col>
-        <b-table
-          striped
-          hover
-          :per-page="perPage"
-          :current-page="currentPage"
-          :items="notices"
-          :fields="fields"
-          @row-clicked="viewNotice"
-        >
-        </b-table>
-        <b-pagination
-          v-model="currentPage"
-          :total-rows="rows"
-          :per-page="perPage"
-          aria-controls="my-table"
-        ></b-pagination>
-      </b-col>
+      <b-table
+        id="my-table"
+        striped
+        hover
+        :per-page="perPage"
+        :current-page="currentPage"
+        :items="notices"
+        :fields="fields"
+        @row-clicked="viewNotice"
+      >
+      </b-table>
+    </b-row>
+    <b-row>
+      <b-pagination
+        class="mx-auto m-2"
+        center
+        pills
+        v-model="currentPage"
+        :total-rows="rows"
+        :per-page="perPage"
+        aria-controls="my-table"
+      ></b-pagination>
     </b-row>
   </b-container>
 </template>
@@ -59,7 +65,8 @@ export default {
       },
       (error) => {
         console.log(error);
-      },
+        // eslint-disable-next-line
+      }
     );
   },
   methods: {

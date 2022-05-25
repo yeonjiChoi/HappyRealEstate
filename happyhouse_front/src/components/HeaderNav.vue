@@ -1,76 +1,66 @@
 <template>
   <div>
-    <header class="navbar navbar-light bg-light">
-      <b-container>
-        <b-row>
-          <div class="col-md-8">
-            <router-link to="/">
-              <img
-                src="@/assets/happyhouse.png"
-                alt="logo"
-                class="navbar-brand"
-              />
-            </router-link>
-          </div>
-        </b-row>
-        <b-col>
-          <div v-if="userInfo">
-            <b-button
-              v-if="userInfo.authority === 'ADMIN'"
-              class="btn float-right"
+    <b-navbar class="navbar" toggleable="lg" variant="light">
+      <router-link id="header-title" to="/" class="ml-4">
+        HAPPY HOUSE
+      </router-link>
+
+      <b-navbar-toggle target="nav-collapse"></b-navbar-toggle>
+
+      <b-collapse id="nav-collapse" is-nav>
+        <b-navbar-nav class="ml-auto">
+          <b-nav-item
+            ><b-link :to="{ name: 'notice' }" class="nav-link"
+              >공지사항</b-link
+            ></b-nav-item
+          >
+          <b-nav-item>
+            <b-link :to="{ name: 'QnA' }" class="nav-link"
+              >Q&A</b-link
+            ></b-nav-item
+          >
+
+          <b-nav-item>
+            <b-link :to="{ name: 'House' }" class="nav-link">
+              거래 정보
+            </b-link></b-nav-item
+          >
+          <b-nav-item>
+            <router-link :to="{ name: 'InterestHouse' }" class="nav-link"
+              >관심 아파트</router-link
+            ></b-nav-item
+          >
+          <b-nav-item>
+            <router-link :to="{ name: 'InterestArea' }" class="nav-link"
+              >관심 지역</router-link
+            ></b-nav-item
+          >
+          <b-nav-item>
+            <router-link :to="{ name: 'News' }" class="nav-link"
+              >뉴스</router-link
+            ></b-nav-item
+          >
+        </b-navbar-nav>
+
+        <!-- Right aligned nav items -->
+        <b-navbar-nav class="ml-auto mr-4">
+          <b-nav-form v-if="userInfo">
+            <b-link :to="{ name: 'memberInfo' }" class="nav-link"
+              >My Page</b-link
             >
-              <router-link :to="{ name: 'memberList' }">회원 관리</router-link>
-            </b-button>
-            <b-button class="btn float-right" @click.prevent="onClickLogout"
-              >LogOut</b-button
+            <b-link @click.prevent="onClickLogout" class="nav-link"
+              >Logout</b-link
             >
-            <div class="float-right">
-              <router-link :to="{ name: 'memberInfo' }">MyPage</router-link>
-            </div>
-          </div>
-          <div v-else>
-            <b-button class="btn float-right">
-              <router-link :to="{ name: 'login' }">Login</router-link>
-            </b-button>
-            <b-button class="btn float-right">
-              <router-link :to="{ name: 'register' }"> Sign UP </router-link>
-            </b-button>
-          </div>
-        </b-col>
-      </b-container>
-      <b-container>
-        <b-row class="benter-block">
-          <div>
-            <ul class="nav">
-              <li class="nav-item">
-                <router-link :to="{ name: 'notice' }" class="link"
-                  >공지사항</router-link
-                >
-              </li>
-              <li class="nav-item">
-                <router-link :to="{ name: 'QnA' }">QnA</router-link>
-              </li>
-              <li class="nav-item">
-                <router-link :to="{ name: 'House' }"> 매물 정보 </router-link>
-              </li>
-              <li class="nav-item">
-                <router-link :to="{ name: 'InterestHouse' }"
-                  >관심 매물</router-link
-                >
-              </li>
-              <li class="nav-item">
-                <router-link :to="{ name: 'InterestArea' }"
-                  >관심 지역</router-link
-                >
-              </li>
-              <li class="nav-item">
-                <router-link :to="{ name: 'News' }">뉴스</router-link>
-              </li>
-            </ul>
-          </div>
-        </b-row>
-      </b-container>
-    </header>
+          </b-nav-form>
+          <b-nav-form v-else>
+            <b-link :to="{ name: 'login' }" class="nav-link">Login</b-link>
+            <b-link :to="{ name: 'register' }" class="nav-link">
+              Sign Up
+            </b-link>
+          </b-nav-form>
+        </b-navbar-nav>
+      </b-collapse>
+    </b-navbar>
   </div>
 </template>
 
@@ -99,12 +89,13 @@ export default {
 </script>
 
 <style>
-.navbar-brand {
-  height: 50px;
-  width: 50px;
-}
 .nav-item {
-  color: black;
   padding: 5px;
+}
+#header-title {
+  text-decoration: none;
+  color: #7c7c7d;
+  font-size: 25px;
+  font-weight: bold;
 }
 </style>

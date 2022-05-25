@@ -1,12 +1,18 @@
 <template>
-  <Doughnut
-    :chart-options="chartOptions"
-    :chart-data="chartData"
-    :chart-id="chartId"
-    :dataset-id-key="datasetIdKey"
-    :width="width"
-    :height="height"
-  />
+  <b-container class="mt-3 mb-3">
+    <div>
+      <h5><b>인기 관심 지역</b></h5>
+    </div>
+    <Doughnut
+      :chart-options="chartOptions"
+      :chart-data="chartData"
+      :chart-id="chartId"
+      :dataset-id-key="datasetIdKey"
+      :width="width"
+      :height="height"
+    />
+    <p class="mt-2">(상위 최대 10개의 지역 제공)</p>
+  </b-container>
 </template>
 
 <script>
@@ -101,9 +107,11 @@ export default {
             ],
           };
         },
+
         (error) => {
           console.log(error);
-        },
+          // eslint-disable-next-line
+        }
       );
     },
     makeColor() {
@@ -113,4 +121,12 @@ export default {
 };
 </script>
 
-<style></style>
+<style scoped>
+div {
+  color: #7d7d7d;
+}
+p {
+  font-size: 15px;
+  color: #909090;
+}
+</style>

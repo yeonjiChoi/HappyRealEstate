@@ -1,15 +1,16 @@
 <template>
   <b-row
-    class="m-2"
+    id="house-item"
+    class="m-2 p-2"
     @click="selectApt"
     @mouseover="colorChange(true)"
     @mouseout="colorChange(false)"
     :class="{ 'mouse-over-bgcolor': isColor }"
   >
-    <b-col cols="2" @click="deleteInterestApt">
-      <b-icon icon="x-lg"></b-icon>
-    </b-col>
     <b-col cols="10">[{{ apt.dongName }}] {{ apt.aptName }} </b-col>
+    <b-col cols="2" @click="confirmDeleteApt">
+      <b-icon icon="trash"></b-icon>
+    </b-col>
   </b-row>
 </template>
 
@@ -35,6 +36,13 @@ export default {
     selectApt() {
       this.setLatLng(this.apt);
     },
+    confirmDeleteApt() {
+      if (
+        confirm(this.apt.aptName + "을(를) 관심 아파트에서 삭제하시겠습니까?")
+      ) {
+        this.deleteInterestApt();
+      }
+    },
     deleteInterestApt() {
       this.deleteInterApt(this.apt);
       this.getInterApt(this.userInfo.userId);
@@ -51,6 +59,11 @@ export default {
 
 <style scoped>
 .mouse-over-bgcolor {
-  background-color: lightblue;
+  background-color: #d6eaf8;
+}
+
+#house-item {
+  border: 1px dashed #ced4da;
+  border-radius: 10px;
 }
 </style>

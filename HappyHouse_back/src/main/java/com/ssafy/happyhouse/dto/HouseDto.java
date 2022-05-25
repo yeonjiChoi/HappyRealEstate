@@ -17,6 +17,11 @@ public class HouseDto {
 	private String lat;
 	@ApiModelProperty(value = "경도")
 	private String lng;
+	@ApiModelProperty(value = "건축연도")
+	private String buildYear;
+	@ApiModelProperty(value = "지번")
+	private String jibun;
+	
 	public int getAptCode() {
 		return aptCode;
 	}
@@ -53,11 +58,23 @@ public class HouseDto {
 	public void setLng(String lng) {
 		this.lng = lng;
 	}
+	public String getBuildYear() {
+		return buildYear;
+	}
+	public void setBuildYear(String buildYear) {
+		this.buildYear = buildYear;
+	}
+	public String getJibun() {
+		return jibun;
+	}
+	public void setJibun(String jibun) {
+		this.jibun = jibun;
+	}
 	@Override
 	public String toString() {
 		return "HouseDto [aptCode=" + aptCode + ", aptName=" + aptName + ", dongCode=" + dongCode + ", dongName="
-				+ dongName + ", lat=" + lat + ", lng=" + lng + "]";
+				+ dongName + ", lat=" + lat + ", lng=" + lng + ", buildYear=" + buildYear + ", jibun=" + jibun + "]";
 	}
-	
+
 	
 }

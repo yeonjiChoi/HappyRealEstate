@@ -1,6 +1,6 @@
 <template>
-  <b-container>
-    <div>News</div>
+  <b-container class="container mt-3">
+    <h3><b-icon icon="newspaper" /> News</h3>
     <news-list></news-list>
   </b-container>
 </template>
@@ -14,4 +14,4 @@ export default {
 };
 </script>
 
-<style></style>
+<style scoped></style>
