@@ -28,11 +28,4 @@ export default {
 };
 </script>
 
-<style scope>
-* {
-  color: #7d7d7d;
-}
-#houseInfoView {
-  height: 1200px;
-}
-</style>
+<style scoped></style>

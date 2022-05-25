@@ -9,4 +9,8 @@
 export default {};
 </script>
 
-<style></style>
+<style>
+#QnAView {
+  height: 800px;
+}
+</style>

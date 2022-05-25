@@ -6,31 +6,52 @@
     >
     </b-row>
     <b-row>
-      <b-col>
-        <b-table
-          striped
-          hover
-          :per-page="perPage"
-          :current-page="currentPage"
-          :items="members"
-          :fields="fields"
-          ><template v-slot:cell(DelOrAutho)="{ item }">
-            <span><b-btn @click="DeleteMember(item)">Delete</b-btn> </span>
-            <span v-if="item.authority === 'USER'"
-              ><b-btn @click="AuthModify(item)">관리자 지정</b-btn>
-            </span>
-            <span v-if="item.authority === 'ADMIN'"
-              ><b-btn @click="AuthModify(item)">관리자 지정 해제</b-btn>
-            </span>
-          </template>
-        </b-table>
-        <b-pagination
-          v-model="currentPage"
-          :total-rows="rows"
-          :per-page="perPage"
-          aria-controls="my-table"
-        ></b-pagination>
-      </b-col>
+      <b-table
+        striped
+        hover
+        :per-page="perPage"
+        :current-page="currentPage"
+        :items="members"
+        :fields="fields"
+        ><template v-slot:cell(DelOrAutho)="{ item }">
+          <span v-if="item.authority === 'USER'"
+            ><b-button
+              size="sm"
+              variant="outline-info"
+              @click="AuthModify(item)"
+              >사용자</b-button
+            >
+          </span>
+          <span v-if="item.authority === 'ADMIN'"
+            ><b-button
+              size="sm"
+              variant="outline-info"
+              @click="AuthModify(item)"
+              >관리자</b-button
+            >
+          </span>
+          |
+          <span
+            ><b-button
+              size="sm"
+              variant="outline-danger"
+              @click="DeleteMember(item)"
+              >삭제</b-button
+            >
+          </span>
+        </template>
+      </b-table>
+    </b-row>
+    <b-row>
+      <b-pagination
+        class="mx-auto m-2"
+        center
+        pills
+        v-model="currentPage"
+        :total-rows="rows"
+        :per-page="perPage"
+        aria-controls="my-table"
+      ></b-pagination>
     </b-row>
   </b-container>
 </template>
@@ -47,12 +68,11 @@ export default {
     return {
       members: [],
       fields: [
-        { key: "userId", label: "ID" },
-        { key: "userPwd", label: "PassWord" },
-        { key: "email", label: "Email" },
+        { key: "userId", label: "아이디" },
+        { key: "email", label: "이메일" },
         { key: "userName", label: "이름" },
         { key: "joinDate", label: "가입일" },
-        { key: "DelOrAutho", label: "삭제/관리자 지정" },
+        { key: "DelOrAutho", label: "권한 | 삭제" },
       ],
       perPage: 10,
       currentPage: 1,
@@ -65,7 +85,8 @@ export default {
       },
       (error) => {
         console.log(error);
-      },
+        // eslint-disable-next-line
+      }
     );
   },
   methods: {
@@ -88,7 +109,8 @@ export default {
         },
         (error) => {
           console.log(error);
-        },
+          // eslint-disable-next-line
+        }
       );
     },
     AuthModify(member) {
@@ -109,7 +131,8 @@ export default {
         },
         (error) => {
           console.log(error);
-        },
+          // eslint-disable-next-line
+        }
       );
     },
   },

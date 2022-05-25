@@ -1,21 +1,20 @@
 <template>
   <div>
-    <div class="container">
-      <h2>MemberManagement</h2>
+    <div class="container p-3" id="MemberManagementView">
+      <h4><b-icon icon="person-lines-fill" /> 회원 관리</h4>
       <router-view></router-view>
-      <footer-bar></footer-bar>
     </div>
   </div>
 </template>
 
 <script>
-import FooterBar from "@/components/FooterBar.vue";
-
 export default {
   name: "noticeView",
-  components: { FooterBar },
-  comments: { FooterBar },
 };
 </script>
 
-<style></style>
+<style>
+#MemberManagementView {
+  height: 800px;
+}
+</style>

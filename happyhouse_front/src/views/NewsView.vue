@@ -1,6 +1,6 @@
 <template>
   <b-container class="container mt-3">
-    <h3><b-icon icon="newspaper" /> News</h3>
+    <h4><b-icon icon="newspaper" /> News</h4>
     <news-list></news-list>
   </b-container>
 </template>

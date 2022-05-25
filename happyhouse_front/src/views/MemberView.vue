@@ -1,5 +1,5 @@
 <template>
-  <b-container class="bv-example-row mt-3 text-center">
+  <b-container id="memberView" class="bv-example-row p-3">
     <router-view></router-view>
   </b-container>
 </template>
@@ -10,4 +10,8 @@ export default {
 };
 </script>
 
-<style></style>
+<style>
+#memberView {
+  height: 800px;
+}
+</style>

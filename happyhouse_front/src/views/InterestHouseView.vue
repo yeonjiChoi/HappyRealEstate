@@ -15,10 +15,8 @@
       </b-row>
     </div>
     <div v-else>
-      <b-jumbotron
-        header="로그인 후 이용해주세요"
-        lead="사용자가 추가한 관심 아파트를 확인할 수 있습니다."
-      >
+      <b-jumbotron lead="로그인 후 이용해주세요">
+        <p>사용자가 추가한 관심 아파트를 확인할 수 있습니다.</p>
         <b-button :to="{ name: 'login' }" variant="outline-dark"
           >Login</b-button
         >
@@ -43,9 +41,6 @@ export default {
 </script>
 
 <style scoped>
-* {
-  color: #7d7d7d;
-}
 #interestHouseView {
   height: 800px;
 }

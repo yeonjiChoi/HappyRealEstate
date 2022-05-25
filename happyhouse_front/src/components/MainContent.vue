@@ -36,22 +36,4 @@ img {
   width: 100%;
   background-size: cover;
 }
-
-/* .jb-wrap {
-  margin: 10px auto;
-  position: relative;
-}
-.jb-wrap img {
-  width: 100%;
-  vertical-align: middle;
-}
-.jb-text {
-  padding: 5px 10px;
-  text-align: center;
-  position: absolute;
-  top: 80%;
-  left: 50%;
-  font-size: 80px;
-  color: #7c7c7d;
-} */
 </style>
