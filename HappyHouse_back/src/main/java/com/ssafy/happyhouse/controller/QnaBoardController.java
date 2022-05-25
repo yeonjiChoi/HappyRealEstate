@@ -1,6 +1,7 @@
 package com.ssafy.happyhouse.controller;
 
 import java.util.List;
+import java.util.Map;
 
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -14,6 +15,7 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 
 import com.ssafy.happyhouse.dto.QnaBoardDto;
@@ -36,9 +38,9 @@ public class QnaBoardController {
 
 	@ApiOperation(value = "QnA 글목록", notes = "모든 QnA 글을 반환한다.", response = List.class)
 	@GetMapping
-	public ResponseEntity<List<QnaBoardDto>> retrieveQnaBoard() throws Exception {
-		logger.debug("retrieveQnaBoard - 호출");
-		return new ResponseEntity<List<QnaBoardDto>>(qnaBoardService.retrieveQnaBoard(), HttpStatus.OK);
+	public ResponseEntity<List<QnaBoardDto>> retrieveQnaBoard(@RequestParam Map<String, String> map) throws Exception {
+		logger.debug("retrieveQnaBoard - 호출 {}", map);
+		return new ResponseEntity<List<QnaBoardDto>>(qnaBoardService.retrieveQnaBoard(map), HttpStatus.OK);
 	}
 
     @ApiOperation(value = "글번호에 해당하는 QnA게시글의 정보를 반환한다.", response = QnaBoardDto.class)    

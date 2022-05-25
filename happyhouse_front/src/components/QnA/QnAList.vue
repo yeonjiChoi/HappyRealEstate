@@ -13,15 +13,11 @@
           size="sm"
           type="text"
           v-model="searchValue"
-          @keyup.enter="getListNotice()"
+          @keyup.enter="getListQna()"
         />
       </span>
       <span>
-        <b-button
-          size="sm"
-          variant="outline-secondary"
-          @click="getListNotice()"
-        >
+        <b-button size="sm" variant="outline-secondary" @click="getListQna()">
           검색
         </b-button>
       </span>
@@ -84,22 +80,7 @@ export default {
     };
   },
   created() {
-    let param = {
-      pg: 1,
-      spp: 20,
-      key: null,
-      word: null,
-    };
-    listQnA(
-      param,
-      (response) => {
-        this.QnAs = response.data;
-      },
-      (error) => {
-        console.log(error);
-        // eslint-disable-next-line
-      }
-    );
+    this.getListQna();
   },
   methods: {
     moveWrite() {
@@ -110,6 +91,19 @@ export default {
         name: "QnADetail",
         params: { qnaNo: QnA.qnaNo },
       });
+    },
+    getListQna() {
+      const params = { key: this.searchKey, value: this.searchValue };
+      listQnA(
+        params,
+        (response) => {
+          this.QnAs = response.data;
+        },
+        (error) => {
+          console.log(error);
+          // eslint-disable-next-line
+        }
+      );
     },
   },
   computed: {

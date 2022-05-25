@@ -3,8 +3,8 @@ import { apiInstance } from "./http.js";
 
 const api = apiInstance();
 
-function listQnA(param, success, fail) {
-  api.get(`/qna`).then(success).catch(fail);
+function listQnA(params, success, fail) {
+  api.get(`/qna`, { params: params }).then(success).catch(fail);
 }
 function writeQnA(QnA, success, fail) {
   api.post(`/qna`, JSON.stringify(QnA)).then(success).catch(fail);
