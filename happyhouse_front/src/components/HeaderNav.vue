@@ -15,6 +15,12 @@
         </b-row>
         <b-col>
           <div v-if="userInfo">
+            <b-button
+              v-if="userInfo.authority === 'ADMIN'"
+              class="btn float-right"
+            >
+              <router-link :to="{ name: 'memberList' }">회원 관리</router-link>
+            </b-button>
             <b-button class="btn float-right" @click.prevent="onClickLogout"
               >LogOut</b-button
             >

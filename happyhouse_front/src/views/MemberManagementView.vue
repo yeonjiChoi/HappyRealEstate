@@ -1,9 +1,21 @@
 <template>
-  <div>MemberManagement</div>
+  <div>
+    <div class="container">
+      <h2>MemberManagement</h2>
+      <router-view></router-view>
+      <footer-bar></footer-bar>
+    </div>
+  </div>
 </template>
 
 <script>
-export default {};
+import FooterBar from "@/components/FooterBar.vue";
+
+export default {
+  name: "noticeView",
+  components: { FooterBar },
+  comments: { FooterBar },
+};
 </script>
 
 <style></style>

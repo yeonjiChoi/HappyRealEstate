@@ -182,6 +182,21 @@ const routes = [
     name: "News",
     component: () => import("@/views/NewsView.vue"),
   },
+  // 멤버 관리
+  {
+    path: "/memeber",
+    name: "member",
+    component: () => import("@/views/MemberManagementView.vue"),
+    redirect: "/member/list",
+    children: [
+      {
+        path: "list",
+        name: "memberList",
+        beforeEnter: isAdmin,
+        component: () => import("@/components/Member/MemberList.vue"),
+      },
+    ],
+  },
 ];
 
 const router = new VueRouter({

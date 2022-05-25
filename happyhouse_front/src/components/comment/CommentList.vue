@@ -5,10 +5,10 @@
       <b-row>
         <b-col>
           <b-table striped hover :items="comments" :fields="fields"
-            ><template v-slot:cell(Delete)="{ item }">
+            ><template v-slot:cell(Del)="{ item }">
               <span v-if="item.userId == userInfo.userId"
-                ><b-btn @click="DeleteComment(item)">Delete</b-btn></span
-              >
+                ><b-btn @click="DeleteComment(item)">Delete</b-btn>
+              </span>
             </template>
           </b-table>
         </b-col>
@@ -34,7 +34,7 @@ export default {
         { key: "content", label: "내용" },
         { key: "userId", label: "작성자" },
         { key: "regDate", label: "작성일" },
-        "Delete",
+        { key: "Del", label: "삭제" },
       ],
     };
   },

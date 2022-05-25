@@ -3,19 +3,25 @@ import { apiInstance } from "./http.js";
 
 const api = apiInstance();
 // 회원 전체 목록
-// function MemberList(success, fail) {
-//   api.get(`/user`).then(success).catch(fail);
-// }
+function MemberList(success, fail) {
+  api.get(`/user`).then(success).catch(fail);
+}
 // 회원 등록
 function MemberRegist(Member, success, fail) {
   api.post(`/user`, JSON.stringify(Member)).then(success).catch(fail);
 }
 // 회원 정보 수정
-//function MemberModify() {}
+function MemberModify(Member, success, fail) {
+  api
+    .put(`/user/${Member.userId}`, JSON.stringify(Member))
+    .then(success)
+    .catch(fail);
+}
 // 회원 삭제
-//function MemeberDel() {}
-// 회원 정보 권한 수정
-//function MemberFixAuth() {}
+function MemeberDel(userId, success, fail) {
+  api.delete(`/user/${userId}`).then(success).catch(fail);
+}
+
 // 아이디 중복 검사
 function checkId(userId, success, fail) {
   api.get(`/user/checkId/${userId}`).then(success).catch(fail);
@@ -34,4 +40,12 @@ async function findById(userId, success, fail) {
   await api.get(`/user/info/${userId}`).then(success).catch(fail);
 }
 
-export { MemberRegist, checkId, login, findById };
+export {
+  MemberRegist,
+  checkId,
+  login,
+  findById,
+  MemberList,
+  MemeberDel,
+  MemberModify,
+};
