@@ -5,7 +5,9 @@
       <b-row>
         <b-col>
           <b-table striped hover :items="comments" :fields="fields"
-            ><b-button></b-button>
+            ><template v-slot:cell(Delete)="{ item }">
+              <span><b-btn @click="DeleteComment(item)">Delete</b-btn></span>
+            </template>
           </b-table>
         </b-col>
       </b-row>
@@ -14,7 +16,7 @@
 </template>
 
 <script>
-import { listComment } from "@/api/comment";
+import { listComment, deleteComment } from "@/api/comment";
 export default {
   name: "CommentList",
   props: {
@@ -24,9 +26,10 @@ export default {
     return {
       comments: [],
       fields: [
-        { key: "content", label: "내용", tdClass: "tdClass" },
-        { key: "userId", label: "작성자", tdClass: "tdClass" },
-        { key: "regDate", label: "작성일", tdClass: "tdClass" },
+        { key: "content", label: "내용" },
+        { key: "userId", label: "작성자" },
+        { key: "regDate", label: "작성일" },
+        "Delete",
       ],
     };
   },
@@ -41,7 +44,25 @@ export default {
       },
     );
   },
-  methods: {},
+  methods: {
+    DeleteComment(item) {
+      console.log(item.no);
+      deleteComment(
+        item.no,
+        ({ data }) => {
+          let msg = "댓글 삭제 오류";
+          if (data === "success") {
+            msg = "삭제 완료";
+          }
+          alert(msg);
+          this.$router.go();
+        },
+        (error) => {
+          console.log(error);
+        },
+      );
+    },
+  },
 };
 </script>
 
