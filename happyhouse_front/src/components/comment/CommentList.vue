@@ -6,7 +6,9 @@
         <b-col>
           <b-table striped hover :items="comments" :fields="fields"
             ><template v-slot:cell(Delete)="{ item }">
-              <span><b-btn @click="DeleteComment(item)">Delete</b-btn></span>
+              <span v-if="item.userId == userInfo.userId"
+                ><b-btn @click="DeleteComment(item)">Delete</b-btn></span
+              >
             </template>
           </b-table>
         </b-col>
@@ -17,6 +19,9 @@
 
 <script>
 import { listComment, deleteComment } from "@/api/comment";
+import { mapState } from "vuex";
+
+const memberStore = "memberStore";
 export default {
   name: "CommentList",
   props: {
@@ -43,6 +48,9 @@ export default {
         console.log(error);
       },
     );
+  },
+  computed: {
+    ...mapState(memberStore, ["userInfo"]),
   },
   methods: {
     DeleteComment(item) {
