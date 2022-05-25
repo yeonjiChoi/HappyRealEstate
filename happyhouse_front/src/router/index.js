@@ -68,6 +68,11 @@ const routes = [
         name: "memberInfo",
         component: () => import("@/components/Member/MemberMyPage.vue"),
       },
+      {
+        path: "modifyMember",
+        name: "modifyMember",
+        component: () => import("@/components/Member/MemberModify.vue"),
+      },
     ],
   },
   // 공지사항
@@ -194,11 +199,6 @@ const routes = [
         name: "memberList",
         beforeEnter: isAdmin,
         component: () => import("@/components/Member/MemberList.vue"),
-      },
-      {
-        path: "modifyMember",
-        name: "modifyMember",
-        component: () => import("@/components/Member/MemberModify.vue"),
       },
     ],
   },

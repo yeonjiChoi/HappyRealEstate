@@ -2,7 +2,7 @@
   <b-container class="bv-example-row">
     <b-row>
       <b-col>
-        <h4><b-icon icon="person-square" /> Register</h4>
+        <h4><b-icon icon="person-square" /> 회원가입</h4>
       </b-col>
     </b-row>
     <b-row>

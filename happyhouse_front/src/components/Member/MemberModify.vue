@@ -1,7 +1,74 @@
 <template>
-  <b-container class="mt-4" v-if="userInfo">
-    <b-row> </b-row>
+  <b-container v-if="userInfo">
     <b-row>
+      <b-col>
+        <h4><b-icon icon="person-square" /> 회원정보 수정</h4></b-col
+      >
+    </b-row>
+    <b-row>
+      <b-col></b-col>
+      <b-col cols="8">
+        <b-container id="userInfoForm" class="mt-2">
+          <b-form @submit="onSubmit">
+            <b-row>
+              <b-col></b-col>
+              <b-col cols="4" align-self="end">아이디</b-col
+              ><b-col cols="4" align-self="start">{{ userInfo.userId }}</b-col>
+              <b-col></b-col>
+            </b-row>
+
+            <b-row class="mt-4">
+              <b-col></b-col>
+              <b-col cols="4" align-self="end">이름</b-col
+              ><b-col cols="4" align-self="start"
+                ><b-form-input
+                  label="name"
+                  type="text"
+                  v-model="user.userName"
+                  required
+                ></b-form-input
+              ></b-col>
+              <b-col></b-col>
+            </b-row>
+
+            <b-row class="mt-4">
+              <b-col></b-col>
+              <b-col cols="4" align-self="end">이메일</b-col
+              ><b-col cols="4" align-self="start"
+                ><b-form-input
+                  label="email"
+                  type="email"
+                  v-model="user.email"
+                  required
+                ></b-form-input
+              ></b-col>
+              <b-col></b-col>
+            </b-row>
+
+            <b-row class="mt-4">
+              <b-col>
+                <b-button
+                  variant="outline-success"
+                  size="sm"
+                  class="mr-1"
+                  type="submit"
+                  >정보수정</b-button
+                >
+                <b-button
+                  variant="outline-danger"
+                  size="sm"
+                  @click="moveMyPage()"
+                  >취소</b-button
+                >
+              </b-col>
+            </b-row>
+          </b-form>
+        </b-container>
+      </b-col>
+      <b-col></b-col>
+    </b-row>
+
+    <!-- <b-row>
       <b-col></b-col>
       <b-col cols="8">
         <b-jumbotron>
@@ -44,14 +111,6 @@
                 ></b-col>
                 <b-col cols="2"></b-col>
               </b-row>
-              <b-row>
-                <b-col cols="2"></b-col>
-                <b-col cols="2" align-self="end">가입일</b-col
-                ><b-col cols="4" align-self="start">{{
-                  userInfo.joinDate
-                }}</b-col>
-                <b-col cols="2"></b-col>
-              </b-row>
 
               <b-button variant="primary" class="mr-1" type="submit"
                 >정보수정</b-button
@@ -63,7 +122,7 @@
         </b-jumbotron>
       </b-col>
       <b-col></b-col>
-    </b-row>
+    </b-row> -->
   </b-container>
 </template>
 
@@ -120,7 +179,8 @@ export default {
         },
         (error) => {
           console.log(error);
-        },
+          // eslint-disable-next-line
+        }
       );
     },
 
@@ -131,4 +191,10 @@ export default {
 };
 </script>
 
-<style></style>
+<style scoped>
+#userInfoForm {
+  border: 1px solid #ced4da;
+  border-radius: 10px;
+  padding: 40px;
+}
+</style>
