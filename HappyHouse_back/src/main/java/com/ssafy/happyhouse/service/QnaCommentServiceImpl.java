@@ -34,4 +34,5 @@ public class QnaCommentServiceImpl implements QnaCommentService {
 		return qnaCommentMapper.deleteQnaComment(no) == 1;
 	}
 
+
 }

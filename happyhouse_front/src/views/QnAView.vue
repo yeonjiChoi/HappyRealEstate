@@ -1,6 +1,6 @@
 <template>
   <b-container id="QnAView" class="p-3">
-    <h4><b-icon />Q&A</h4>
+    <h4><b-icon icon="question-square" /> Q&A</h4>
     <router-view></router-view>
   </b-container>
 </template>
@@ -9,8 +9,4 @@
 export default {};
 </script>
 
-<style>
-#QnAView {
-  height: 800px;
-}
-</style>
+<style></style>

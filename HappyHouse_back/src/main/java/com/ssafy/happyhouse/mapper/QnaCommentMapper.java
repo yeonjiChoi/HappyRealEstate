@@ -16,4 +16,5 @@ public interface QnaCommentMapper {
 
 	int deleteQnaComment(int no);
 
+
 }

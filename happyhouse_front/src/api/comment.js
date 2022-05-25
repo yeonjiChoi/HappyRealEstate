@@ -9,9 +9,9 @@ function listComment(qnaNo, success, fail) {
 function writeComment(comment, success, fail) {
   api.post(`/qna/comment`, JSON.stringify(comment)).then(success).catch(fail);
 }
-function modifyComment(comment, success, fail) {
+function modifyComment(params, success, fail) {
   api
-    .put(`/qna/comment/${comment.no}`, JSON.stringify(comment))
+    .put(`/qna/comment/${params.no}`, JSON.stringify(params))
     .then(success)
     .catch(fail);
 }

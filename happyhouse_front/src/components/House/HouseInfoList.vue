@@ -44,7 +44,7 @@
   <b-container v-else class="bv-example-row mt-3">
     <b-row
       ><b-alert show style="background-color: #d6eaf8; height: 50px"
-        >주택 목록이 없습니다.</b-alert
+        >아파트 목록이 없습니다.</b-alert
       ></b-row
     >
   </b-container>

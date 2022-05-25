@@ -2,45 +2,56 @@
   <b-container class="bv-example-row mt-3">
     <b-row class="mb-1">
       <b-col class="text-left">
-        <b-button @click="listQnA">목록</b-button>
+        <b-button size="sm" variant="outline-secondary" @click="listQnA"
+          >목록</b-button
+        >
       </b-col>
-      <b-col class="text-right">
+      <b-col
+        v-if="userInfo != null && this.QnA.userId === userInfo.userId"
+        class="text-right"
+      >
         <b-button
           size="sm"
+          variant="outline-info "
           @click="moveModifyQnA"
           class="mr-2"
-          v-if="userInfo != null && this.QnA.userId === userInfo.userId"
-          >글수정</b-button
+          >수정</b-button
         >
-        <b-button
-          size="sm"
-          v-if="userInfo != null && this.QnA.userId === userInfo.userId"
-          @click="deleteQnA"
-          >글삭제</b-button
+        <b-button size="sm" variant="outline-danger" @click="deleteQnA"
+          >삭제</b-button
         >
       </b-col>
     </b-row>
-    <b-row class="mb-1">
+    <b-row class="mb-1 mt-2">
       <b-col>
-        <b-card
-          :header-html="`<h3>${QnA.qnaNo}.
-          ${QnA.title} </h3><div><h6>${QnA.userId}</div><div>${QnA.regDate}</h6></div>`"
-          class="mb-2"
-          border-variant="dark"
-          no-body
-        >
-          <b-card-body class="text-left">
-            <div v-html="message"></div>
-          </b-card-body>
+        <b-card header-tag="header" footer-tag="footer">
+          <template #header>
+            <h6 class="mb-0 p-2">[{{ QnA.qnaNo }}] {{ QnA.title }}</h6>
+          </template>
+          <b-card-text class="text-left" style="height: 300px">{{
+            QnA.content
+          }}</b-card-text>
+          <template #footer>
+            <b-row>
+              <b-col cols="auto" class="mr-auto"
+                >작성자 : {{ QnA.userId }}</b-col
+              >
+              <b-col cols="auto" class="">작성일 : {{ QnA.regDate }}</b-col>
+            </b-row>
+          </template>
         </b-card>
       </b-col>
     </b-row>
-    <template v-if="userInfo != null">
-      <div>
+    <div id="commentContainer" class="mt-3">
+      <template v-if="userInfo != null">
+        <div>
+          <comment-input-list-item :qnaNo="qnaNo"></comment-input-list-item>
+        </div>
+      </template>
+      <div class="mt-2" id="commentList">
         <comment-list :qnaNo="qnaNo"></comment-list>
-        <comment-input-list-item :qnaNo="qnaNo"></comment-input-list-item>
       </div>
-    </template>
+    </div>
   </b-container>
 </template>
 
@@ -77,7 +88,8 @@ export default {
       },
       (error) => {
         console.log("QnA 에러발생!!", error);
-      },
+        // eslint-disable-next-line
+      }
     );
   },
   methods: {
@@ -101,4 +113,14 @@ export default {
 };
 </script>
 
-<style></style>
+<style scoped>
+#commentList {
+  overflow-y: scroll;
+  flex: 1 1 auto;
+  height: 300px;
+}
+#commentContainer {
+  border: 1px solid #ced4da;
+  border-radius: 5px;
+}
+</style>

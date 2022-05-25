@@ -1,18 +1,20 @@
 <template>
-  <b-container>
-    <b-row>
-      <b-col style="text-align: left">
-        Comment
-        <b-form @submit="onSubmit">
-          <b-form-input
-            label="comment"
-            type="text"
-            v-model="comment.content"
-            placeholder="comments..."
-          ></b-form-input>
-          <b-button type="submit" class="m-1">등록</b-button>
-        </b-form>
-      </b-col>
+  <b-container class="mt-4" id="Commentregister">
+    <b-row class="justify-content-center" align-v="center">
+      <span style="width: 90%" class="ml-2">
+        <b-form-input
+          label="comment"
+          type="text"
+          v-model="comment.content"
+          @keyup.enter="onSubmit()"
+          placeholder="댓글을 입력하세요"
+        ></b-form-input>
+      </span>
+      <span>
+        <b-button variant="outline-secondary" @click="onSubmit()" class="ml-2"
+          >등록</b-button
+        >
+      </span>
     </b-row>
   </b-container>
 </template>
@@ -47,9 +49,7 @@ export default {
     this.comment.userId = this.userInfo.userId;
   },
   methods: {
-    onSubmit(event) {
-      event.preventDefault();
-
+    onSubmit() {
       let err = true;
       let msg = "";
       !this.comment.content &&
@@ -77,7 +77,8 @@ export default {
         },
         (error) => {
           console.log(error);
-        },
+          // eslint-disable-next-line
+        }
       );
     },
     moveQnA() {

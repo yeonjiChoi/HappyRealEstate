@@ -1,29 +1,62 @@
 <template>
   <b-container class="bv-example-row mt-3">
-    <b-row class="mb-1">
-      <b-col class="text-right">
-        <b-button @click="moveWrite()">글쓰기</b-button>
+    <b-row class="justify-content-md-left mb-2">
+      <span class="mr-1">
+        <b-form-select size="sm" v-model="searchKey" variant="secondary">
+          <option value="">선택</option>
+          <option value="title">제목</option>
+          <option value="content">내용</option>
+        </b-form-select>
+      </span>
+      <span class="mr-1">
+        <b-input
+          size="sm"
+          type="text"
+          v-model="searchValue"
+          @keyup.enter="getListNotice()"
+        />
+      </span>
+      <span>
+        <b-button
+          size="sm"
+          variant="outline-secondary"
+          @click="getListNotice()"
+        >
+          검색
+        </b-button>
+      </span>
+
+      <b-col
+        class="text-right"
+        v-if="userInfo != null && userInfo.authority === 'ADMIN'"
+      >
+        <b-button size="sm" variant="outline-secondary" @click="moveWrite()"
+          >Q&A 작성</b-button
+        >
       </b-col>
     </b-row>
     <b-row>
-      <b-col>
-        <b-table
-          striped
-          hover
-          :per-page="perPage"
-          :current-page="currentPage"
-          :items="QnAs"
-          :fields="fields"
-          @row-clicked="viewQnA"
-        >
-        </b-table>
-        <b-pagination
-          v-model="currentPage"
-          :total-rows="rows"
-          :per-page="perPage"
-          aria-controls="my-table"
-        ></b-pagination>
-      </b-col>
+      <b-table
+        striped
+        hover
+        :per-page="perPage"
+        :current-page="currentPage"
+        :items="QnAs"
+        :fields="fields"
+        @row-clicked="viewQnA"
+      >
+      </b-table>
+    </b-row>
+    <b-row>
+      <b-pagination
+        class="mx-auto m-2"
+        center
+        pills
+        v-model="currentPage"
+        :total-rows="rows"
+        :per-page="perPage"
+        aria-controls="my-table"
+      ></b-pagination>
     </b-row>
   </b-container>
 </template>
@@ -46,6 +79,8 @@ export default {
       ],
       perPage: 10,
       currentPage: 1,
+      searchKey: "",
+      searchValue: "",
     };
   },
   created() {
@@ -62,7 +97,8 @@ export default {
       },
       (error) => {
         console.log(error);
-      },
+        // eslint-disable-next-line
+      }
     );
   },
   methods: {

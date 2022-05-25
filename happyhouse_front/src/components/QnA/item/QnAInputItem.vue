@@ -2,12 +2,7 @@
   <b-row class="mb-1">
     <b-col style="text-align: left">
       <b-form @submit="onSubmit" @reset="onReset">
-        <b-form-group
-          id="userId-group"
-          label="작성자:"
-          label-for="userId"
-          description="작성자를 입력하세요."
-        >
+        <b-form-group id="userId-group" label="작성자:" label-for="userId">
           <b-form-input
             id="userId"
             disabled
@@ -18,12 +13,7 @@
           ></b-form-input>
         </b-form-group>
 
-        <b-form-group
-          id="title-group"
-          label="제목:"
-          label-for="title"
-          description="제목을 입력하세요."
-        >
+        <b-form-group id="title-group" label="제목:" label-for="title">
           <b-form-input
             id="title"
             v-model="QnA.title"
@@ -45,15 +35,17 @@
 
         <b-button
           type="submit"
-          variant="primary"
+          variant="outline-success"
           class="m-1"
           v-if="this.type === 'register'"
           >글작성</b-button
         >
-        <b-button type="submit" variant="primary" class="m-1" v-else
+        <b-button type="submit" variant="outline-info " class="m-1" v-else
           >글수정</b-button
         >
-        <b-button type="reset" variant="danger" class="m-1">초기화</b-button>
+        <b-button type="reset" variant="outline-danger" class="m-1"
+          >초기화</b-button
+        >
       </b-form>
     </b-col>
   </b-row>
@@ -92,7 +84,8 @@ export default {
         },
         (error) => {
           console.log(error);
-        },
+          // eslint-disable-next-line
+        }
       );
       this.isuserId = true;
     } else {
@@ -145,7 +138,8 @@ export default {
         },
         (error) => {
           console.log(error);
-        },
+          // eslint-disable-next-line
+        }
       );
     },
     modifyQnA() {
@@ -167,7 +161,8 @@ export default {
         },
         (error) => {
           console.log(error);
-        },
+          // eslint-disable-next-line
+        }
       );
     },
     moveList() {

@@ -52,7 +52,7 @@ public class QnaCommentController {
 	@ApiOperation(value = "QnA게시글의 댓글을 수정한다..", response = String.class)
 	@PutMapping("{no}")
 	public ResponseEntity<String> updateQnaComment(@RequestBody QnaCommentDto qnaCommentDto) {
-		logger.debug("updateQnaComment - 호출");
+		logger.debug("updateQnaComment - 호출 {}", qnaCommentDto);
 		if (qnaCommentService.updateQnaComment(qnaCommentDto)) {
 			return new ResponseEntity<String>(SUCCESS, HttpStatus.OK);
 		}

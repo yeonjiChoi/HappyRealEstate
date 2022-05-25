@@ -1,25 +1,5 @@
 <template>
   <b-container class="bv-example-row mt-3">
-    <b-row class="mb-1 mt-2">
-      <b-col>
-        <b-card header-tag="header" footer-tag="footer">
-          <template #header>
-            <h6 class="mb-0 p-2">[{{ notice.noticeNo }}] {{ notice.title }}</h6>
-          </template>
-          <b-card-text class="text-left" style="height: 500px">{{
-            notice.content
-          }}</b-card-text>
-          <template #footer>
-            <b-row>
-              <b-col cols="auto" class="mr-auto"
-                >작성자 : {{ notice.userId }}</b-col
-              >
-              <b-col cols="auto" class="">작성일 : {{ notice.regDate }}</b-col>
-            </b-row>
-          </template>
-        </b-card>
-      </b-col>
-    </b-row>
     <b-row
       class="mb-1"
       v-if="userInfo != null && userInfo.authority === 'ADMIN'"
@@ -40,6 +20,26 @@
         <b-button size="sm" variant="outline-danger" @click="deleteNotice"
           >삭제</b-button
         >
+      </b-col>
+    </b-row>
+    <b-row class="mb-1 mt-2">
+      <b-col>
+        <b-card header-tag="header" footer-tag="footer">
+          <template #header>
+            <h6 class="mb-0 p-2">[{{ notice.noticeNo }}] {{ notice.title }}</h6>
+          </template>
+          <b-card-text class="text-left" style="height: 300px">{{
+            notice.content
+          }}</b-card-text>
+          <template #footer>
+            <b-row>
+              <b-col cols="auto" class="mr-auto"
+                >작성자 : {{ notice.userId }}</b-col
+              >
+              <b-col cols="auto" class="">작성일 : {{ notice.regDate }}</b-col>
+            </b-row>
+          </template>
+        </b-card>
       </b-col>
     </b-row>
   </b-container>
