@@ -7,7 +7,10 @@
       | <b-col cols="7"> {{ comment.content }} </b-col> |
       <b-col class="text-center" cols="2"> {{ comment.regDate | date }} </b-col>
       |
-      <b-col cols="1" v-if="userInfo.userId == comment.userId">
+      <b-col
+        cols="1"
+        v-if="userInfo != null && userInfo.userId == comment.userId"
+      >
         <b-icon icon="pencil-square" @click="changeModify()" /> /
         <b-icon icon="x-square" @click="deleteCmt()" />
       </b-col>

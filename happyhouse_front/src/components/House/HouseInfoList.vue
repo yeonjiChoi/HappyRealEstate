@@ -37,6 +37,10 @@
         :total-rows="rows"
         :per-page="perPage"
         aria-controls="my-table"
+        first-text="<<"
+        prev-text="<"
+        next-text=">"
+        last-text=">>"
       >
       </b-pagination>
     </b-row>

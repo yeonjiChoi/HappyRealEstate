@@ -34,20 +34,25 @@
           <template #footer>
             <b-row>
               <b-col cols="auto" class="mr-auto"
-                >작성자 : {{ QnA.userId }}</b-col
+                >작성자 | {{ QnA.userId }}</b-col
               >
-              <b-col cols="auto" class="">작성일 : {{ QnA.regDate }}</b-col>
+              <b-col cols="auto" class="">작성일 | {{ QnA.regDate }}</b-col>
             </b-row>
           </template>
         </b-card>
       </b-col>
     </b-row>
-    <div id="commentContainer" class="mt-3">
-      <template v-if="userInfo != null">
+    <b-row class="pl-3 mt-3">
+      <b-col align-v="center">
+        <h6><b-icon icon="chat-square-dots" /> COMMENT</h6></b-col
+      ></b-row
+    >
+    <div id="commentContainer" class="">
+      <div v-if="userInfo != null">
         <div>
           <comment-input-list-item :qnaNo="qnaNo"></comment-input-list-item>
         </div>
-      </template>
+      </div>
       <div class="mt-2" id="commentList">
         <comment-list :qnaNo="qnaNo"></comment-list>
       </div>

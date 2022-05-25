@@ -34,9 +34,9 @@
           <template #footer>
             <b-row>
               <b-col cols="auto" class="mr-auto"
-                >작성자 : {{ notice.userId }}</b-col
+                >작성자 | {{ notice.userId }}</b-col
               >
-              <b-col cols="auto" class="">작성일 : {{ notice.regDate }}</b-col>
+              <b-col cols="auto" class="">작성일 | {{ notice.regDate }}</b-col>
             </b-row>
           </template>
         </b-card>

@@ -11,6 +11,6 @@ export default {};
 
 <style>
 #QnAView {
-  height: 800px;
+  height: 1000px;
 }
 </style>
