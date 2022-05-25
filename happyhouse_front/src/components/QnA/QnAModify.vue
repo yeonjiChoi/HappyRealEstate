@@ -1,9 +1,17 @@
 <template>
-  <div>QnAModify</div>
+  <b-container>
+    <qn-a-input-item type="modify" />
+  </b-container>
 </template>
 
 <script>
-export default {};
+import QnAInputItem from "@/components/QnA/item/QnAInputItem.vue";
+export default {
+  name: "QnAModify",
+  components: {
+    QnAInputItem,
+  },
+};
 </script>
 
 <style></style>

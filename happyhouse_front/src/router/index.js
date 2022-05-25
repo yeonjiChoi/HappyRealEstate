@@ -104,6 +104,7 @@ const routes = [
     ],
   },
   // QnA
+  // QnA
   {
     path: "/QnA",
     name: "QnA",
@@ -112,21 +113,16 @@ const routes = [
     children: [
       {
         path: "list",
-        name: "QnAlist",
+        name: "QnAList",
         component: () => import("@/components/QnA/QnAList.vue"),
       },
       {
-        path: "QnADelete",
-        name: "QnADelete",
-        component: () => import("@/components/QnA/QnADelete.vue"),
-      },
-      {
-        path: "QnADetail",
+        path: "QnADetail/:qnaNo",
         name: "QnADetail",
         component: () => import("@/components/QnA/QnADetail.vue"),
       },
       {
-        path: "QnAModify",
+        path: "QnAModify/:qnaNo",
         name: "QnAModify",
         beforeEnter: onlyAuthUser,
         component: () => import("@/components/QnA/QnAModify.vue"),
