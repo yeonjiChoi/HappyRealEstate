@@ -32,12 +32,12 @@
       <b-col class="text-right">
         <b-button
           size="sm"
-          variant="outline-secondary"
+          variant="outline-info "
           @click="moveModifyNotice"
           class="mr-2"
           >수정</b-button
         >
-        <b-button size="sm" variant="outline-secondary" @click="deleteNotice"
+        <b-button size="sm" variant="outline-danger" @click="deleteNotice"
           >삭제</b-button
         >
       </b-col>
@@ -75,7 +75,7 @@ export default {
       (error) => {
         console.log("공지사항 에러발생!!", error);
         // eslint-disable-next-line
-      },
+      }
     );
   },
   methods: {

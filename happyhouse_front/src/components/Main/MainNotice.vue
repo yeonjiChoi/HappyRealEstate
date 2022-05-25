@@ -31,7 +31,9 @@ export default {
     };
   },
   created() {
+    const params = { key: "", value: "" };
     listNotice(
+      params,
       (response) => {
         this.notices = response.data;
       },

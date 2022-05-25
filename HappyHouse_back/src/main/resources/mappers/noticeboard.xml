@@ -4,10 +4,19 @@
         "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="com.ssafy.happyhouse.mapper.NoticeBoardMapper">
 
+	<sql id="search">
+		<if test="value!=null and value!='' ">
+			<if test="key!=null and key!='' ">
+				where ${key} like concat('%', #{value} ,'%')
+			</if>
+		</if>
+	</sql>
+	
 	<!-- 공지사항 글 전체 조회 -->
-	<select id="selectNoticeBoard" resultType="noticeBoardDto">
+	<select id="selectNoticeBoard" parameterType="map" resultType="noticeBoardDto">
 		select noticeNo, title, content, userId, regDate
 		from noticeboard
+		<include refid="search"></include>
 		order by noticeNo desc
 	</select>
 

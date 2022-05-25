@@ -1,10 +1,35 @@
 <template>
   <b-container class="bv-example-row mt-3">
-    <b-row
-      class="mb-2"
-      v-if="userInfo != null && userInfo.authority === 'ADMIN'"
-    >
-      <b-col class="text-right">
+    <b-row class="justify-content-md-left mb-2">
+      <span class="mr-1">
+        <b-form-select size="sm" v-model="searchKey" variant="secondary">
+          <option value="">선택</option>
+          <option value="title">제목</option>
+          <option value="content">내용</option>
+        </b-form-select>
+      </span>
+      <span class="mr-1">
+        <b-input
+          size="sm"
+          type="text"
+          v-model="searchValue"
+          @keyup.enter="getListNotice()"
+        />
+      </span>
+      <span>
+        <b-button
+          size="sm"
+          variant="outline-secondary"
+          @click="getListNotice()"
+        >
+          검색
+        </b-button>
+      </span>
+
+      <b-col
+        class="text-right"
+        v-if="userInfo != null && userInfo.authority === 'ADMIN'"
+      >
         <b-button size="sm" variant="outline-secondary" @click="moveWrite()"
           >공지사항 작성</b-button
         >
@@ -23,6 +48,7 @@
       >
       </b-table>
     </b-row>
+
     <b-row>
       <b-pagination
         class="mx-auto m-2"
@@ -56,20 +82,28 @@ export default {
       ],
       perPage: 10,
       currentPage: 1,
+      searchKey: "",
+      searchValue: "",
     };
   },
   created() {
-    listNotice(
-      (response) => {
-        this.notices = response.data;
-      },
-      (error) => {
-        console.log(error);
-        // eslint-disable-next-line
-      },
-    );
+    this.getListNotice();
   },
   methods: {
+    getListNotice() {
+      const params = { key: this.searchKey, value: this.searchValue };
+      listNotice(
+        params,
+        (response) => {
+          this.notices = response.data;
+          console.log(this.notices);
+        },
+        (error) => {
+          console.log(error);
+          // eslint-disable-next-line
+        }
+      );
+    },
     moveWrite() {
       this.$router.push({ name: "noticeWrite" });
     },

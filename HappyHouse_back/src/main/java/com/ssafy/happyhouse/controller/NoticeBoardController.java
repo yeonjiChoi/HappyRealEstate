@@ -1,6 +1,7 @@
 package com.ssafy.happyhouse.controller;
 
 import java.util.List;
+import java.util.Map;
 
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -14,6 +15,7 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 
 import com.ssafy.happyhouse.dto.NoticeBoardDto;
@@ -36,10 +38,11 @@ public class NoticeBoardController {
 	
     @ApiOperation(value = "공지사항 글목록", notes = "모든 공지사항 글을 반환한다.", response = List.class)
 	@GetMapping
-	public ResponseEntity<List<NoticeBoardDto>> retrieveNoticeBoard() throws Exception {
-		logger.debug("retrieveNoticeBoard - 호출");
-		return new ResponseEntity<List<NoticeBoardDto>>(noticeBoardService.retrieveNoticeBoard(), HttpStatus.OK);
+	public ResponseEntity<List<NoticeBoardDto>> retrieveNoticeBoard(@RequestParam Map<String, String> map) throws Exception {
+    	logger.debug("retrieveNoticeBoard - 호출 {}", map);
+		return new ResponseEntity<List<NoticeBoardDto>>(noticeBoardService.retrieveNoticeBoard(map), HttpStatus.OK);
 	}
+	
 	
     @ApiOperation(value = "공지사항 글보기", notes = "글번호에 해당하는 공지사항 글의 정보를 반환한다.", response = NoticeBoardDto.class)    
 	@GetMapping("{noticeNo}")

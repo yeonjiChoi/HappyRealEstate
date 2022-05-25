@@ -3,8 +3,8 @@ import { apiInstance } from "./http.js";
 
 const api = apiInstance();
 
-function listNotice(success, fail) {
-  api.get(`/notice`).then(success).catch(fail);
+function listNotice(params, success, fail) {
+  api.get(`/notice`, { params: params }).then(success).catch(fail);
 }
 function writeNotice(notice, success, fail) {
   api.post(`/notice`, JSON.stringify(notice)).then(success).catch(fail);

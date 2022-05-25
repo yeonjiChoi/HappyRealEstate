@@ -1,6 +1,8 @@
 package com.ssafy.happyhouse.service;
 
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -15,9 +17,14 @@ public class NoticeBoardServiceImpl implements NoticeBoardService {
 	private NoticeBoardMapper noticeBoardMapper;
 	
 	@Override
-	public List<NoticeBoardDto> retrieveNoticeBoard() {
-		return noticeBoardMapper.selectNoticeBoard();
+	public List<NoticeBoardDto> retrieveNoticeBoard(Map<String, String> map) {
+		Map<String, String> param = new HashMap<String, String>();
+		String key = map.get("key");
+		param.put("key", key == null ? "" : key);
+		param.put("value", map.get("value") == null ? "" : map.get("value"));
+		return noticeBoardMapper.selectNoticeBoard(param);
 	}
+
 
 	@Override
 	public boolean writeNoticeBoard(NoticeBoardDto noticeBoardDto) {
