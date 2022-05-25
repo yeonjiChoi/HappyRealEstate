@@ -10,11 +10,19 @@
         <b-table
           striped
           hover
+          :per-page="perPage"
+          :current-page="currentPage"
           :items="QnAs"
           :fields="fields"
           @row-clicked="viewQnA"
         >
         </b-table>
+        <b-pagination
+          v-model="currentPage"
+          :total-rows="rows"
+          :per-page="perPage"
+          aria-controls="my-table"
+        ></b-pagination>
       </b-col>
     </b-row>
   </b-container>
@@ -22,7 +30,9 @@
 
 <script>
 import { listQnA } from "@/api/QnA";
+import { mapState } from "vuex";
 
+const memberStore = "memberStore";
 export default {
   name: "QnAList",
   data() {
@@ -34,6 +44,8 @@ export default {
         { key: "userId", label: "작성자", tdClass: "tdClass" },
         { key: "regDate", label: "작성일", tdClass: "tdClass" },
       ],
+      perPage: 10,
+      currentPage: 1,
     };
   },
   created() {
@@ -62,6 +74,12 @@ export default {
         name: "QnADetail",
         params: { qnaNo: QnA.qnaNo },
       });
+    },
+  },
+  computed: {
+    ...mapState(memberStore, ["userInfo"]),
+    rows() {
+      return this.QnAs.length;
     },
   },
 };

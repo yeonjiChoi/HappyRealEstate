@@ -195,6 +195,11 @@ const routes = [
         beforeEnter: isAdmin,
         component: () => import("@/components/Member/MemberList.vue"),
       },
+      {
+        path: "modifyMember",
+        name: "modifyMember",
+        component: () => import("@/components/Member/MemberModify.vue"),
+      },
     ],
   },
 ];

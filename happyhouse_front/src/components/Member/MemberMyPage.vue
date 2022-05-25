@@ -47,8 +47,12 @@
           </b-container>
           <hr class="my-4" />
 
-          <b-button variant="primary" class="mr-1">정보수정</b-button>
-          <b-button variant="danger">회원탈퇴</b-button>
+          <b-button variant="primary" class="mr-1" @click="moveModifyMember()"
+            >정보수정</b-button
+          >
+          <b-button variant="danger" @click="DeleteMember(userInfo.userId)"
+            >회원탈퇴</b-button
+          >
         </b-jumbotron>
       </b-col>
       <b-col></b-col>
@@ -57,7 +61,8 @@
 </template>
 
 <script>
-import { mapState } from "vuex";
+import { mapState, mapMutations } from "vuex";
+import { MemeberDel } from "@/api/member.js";
 
 const memberStore = "memberStore";
 
@@ -67,7 +72,35 @@ export default {
   computed: {
     ...mapState(memberStore, ["userInfo"]),
   },
-  methods: {},
+  methods: {
+    ...mapMutations(memberStore, ["SET_IS_LOGIN", "SET_USER_INFO"]),
+    DeleteMember(userId) {
+      MemeberDel(
+        userId,
+        ({ data }) => {
+          let msg = "멤버 삭제 오류";
+          if (data === "success") {
+            msg = "삭제 완료";
+          }
+          alert(msg);
+          this.onClickLogout();
+        },
+        (error) => {
+          console.log(error);
+        },
+      );
+    },
+    onClickLogout() {
+      // console.log("memberStore : ", ms);
+      this.SET_IS_LOGIN(false);
+      this.SET_USER_INFO(null);
+      sessionStorage.removeItem("access-token");
+      if (this.$route.path != "/") this.$router.push({ name: "home" });
+    },
+    moveModifyMember() {
+      this.$router.push({ name: "modifyMember" });
+    },
+  },
 };
 </script>
 
