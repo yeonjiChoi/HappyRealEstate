@@ -17,7 +17,7 @@
 		select noticeNo, title, content, userId, left(regDate,10) as regDate
 		from noticeboard
 		<include refid="search"></include>
-		order by noticeNo desc
+		order by regDate desc
 	</select>
 
 	<!-- 공지사항 글 상세 조회 -->
