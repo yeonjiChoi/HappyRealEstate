@@ -1,5 +1,5 @@
 <template>
-  <b-row
+  <div
     id="house-item"
     class="m-2 p-2"
     @click="selectApt"
@@ -7,11 +7,19 @@
     @mouseout="colorChange(false)"
     :class="{ 'mouse-over-bgcolor': isColor }"
   >
-    <b-col cols="10">[{{ apt.dongName }}] {{ apt.aptName }} </b-col>
-    <b-col cols="2" @click="confirmDeleteApt">
-      <b-icon icon="trash"></b-icon>
-    </b-col>
-  </b-row>
+    <b-row>
+      <b-col cols="10">
+        [{{ apt.sidoName }} {{ apt.gugunName }} {{ apt.dongName }}]
+      </b-col>
+      <b-col cols="2"
+        ><b-icon icon="trash" @click="confirmDeleteApt"></b-icon
+      ></b-col>
+    </b-row>
+
+    <b-row>
+      <b-col> {{ apt.aptName }}</b-col>
+    </b-row>
+  </div>
 </template>
 
 <script>
