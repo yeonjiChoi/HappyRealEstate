@@ -14,7 +14,7 @@
 	
 	<!-- 공지사항 글 전체 조회 -->
 	<select id="selectNoticeBoard" parameterType="map" resultType="noticeBoardDto">
-		select noticeNo, title, content, userId, regDate
+		select noticeNo, title, content, userId, left(regDate,10) as regDate
 		from noticeboard
 		<include refid="search"></include>
 		order by noticeNo desc
@@ -22,7 +22,7 @@
 
 	<!-- 공지사항 글 상세 조회 -->
 	<select id="selectNoticeBoardByNo" resultType="noticeBoardDto">
-		select noticeNo, title, content, userId, regDate
+		select noticeNo, title, content, userId, left(regDate,10) as regDate
 		from noticeboard
 		where noticeNo = #{noticeNo}
 	</select>

@@ -15,7 +15,7 @@
 	
 	<!-- QnA 글 전체 조회 -->
 	<select id="selectQnaBoard" parameterType="map" resultType="qnaBoardDto">
-		select qnaNo, title, content, userId, regDate
+		select qnaNo, title, content, userId, left(regDate,10) as regDate
 		from qnaboard
 		<include refid="search"></include>
 		order by qnaNo desc
@@ -28,7 +28,7 @@
 
 	<select id="selectQnaBoardByNo" parameterType="int"
 		resultType="qnaBoardDto">
-		select qnaNo, userId, title, content, regDate
+		select qnaNo, userId, title, content, left(regDate,10) as regDate
 		from qnaboard
 		where qnaNo = #{qnaNo}
 	</select>

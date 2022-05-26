@@ -9,7 +9,7 @@
 		select no, qnaNo, userId, content, regDate
 		from qnacomment
 		where qnaNo = #{qnaNo}
-		order by no
+		order by regDate desc;
 	</select>
 	
 	<insert id="insertQnaComment" parameterType="qnaCommentDto">
