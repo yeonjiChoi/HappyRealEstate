@@ -166,9 +166,11 @@ export default {
 
       if (this.isIdPossible == false) {
         alert("아이디 중복 미체크 또는 이미 존재하는 아이디입니다.");
+        this.$refs.member.userid.focus();
       }
       if (this.isPwdPossible == false) {
         alert("비밀번호를 다시 확인해주세요.");
+        this.$refs.member.userPwd.focus();
       }
       if (!err) {
         alert(msg);
@@ -195,7 +197,7 @@ export default {
         (error) => {
           console.log(error);
           // eslint-disable-next-line
-        }
+        },
       );
     },
     moveLogin() {
