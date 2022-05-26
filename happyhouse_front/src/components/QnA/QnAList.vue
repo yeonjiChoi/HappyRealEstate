@@ -22,10 +22,7 @@
         </b-button>
       </span>
 
-      <b-col
-        class="text-right"
-        v-if="userInfo != null && userInfo.authority === 'ADMIN'"
-      >
+      <b-col class="text-right" v-if="userInfo != null">
         <b-button size="sm" variant="outline-secondary" @click="moveWrite()"
           >Q&A 작성</b-button
         >
@@ -106,7 +103,7 @@ export default {
         (error) => {
           console.log(error);
           // eslint-disable-next-line
-        }
+        },
       );
     },
   },

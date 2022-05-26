@@ -79,21 +79,6 @@
     <additional_attributes>90.0;170.0;10.0;10.0</additional_attributes>
   </element>
   <element>
-    <id>UMLNote</id>
-    <coordinates>
-      <x>330</x>
-      <y>10</y>
-      <w>190</w>
-      <h>100</h>
-    </coordinates>
-    <panel_attributes>시, 군, 구 선택
-매매 정보 필터링 
---&gt; 필터 정보 생각해보기
-
-bg=white</panel_attributes>
-    <additional_attributes/>
-  </element>
-  <element>
     <id>UMLUseCase</id>
     <coordinates>
       <x>160</x>
@@ -114,30 +99,6 @@ bg=white</panel_attributes>
     </coordinates>
     <panel_attributes/>
     <additional_attributes>90.0;240.0;10.0;10.0</additional_attributes>
-  </element>
-  <element>
-    <id>UMLNote</id>
-    <coordinates>
-      <x>330</x>
-      <y>230</y>
-      <w>170</w>
-      <h>30</h>
-    </coordinates>
-    <panel_attributes>관심지역 개수 1~3
-bg=white</panel_attributes>
-    <additional_attributes/>
-  </element>
-  <element>
-    <id>UMLNote</id>
-    <coordinates>
-      <x>330</x>
-      <y>290</y>
-      <w>210</w>
-      <h>40</h>
-    </coordinates>
-    <panel_attributes>관심 지역의 아파트 매매 정보
-bg=white</panel_attributes>
-    <additional_attributes/>
   </element>
   <element>
     <id>UMLUseCase</id>

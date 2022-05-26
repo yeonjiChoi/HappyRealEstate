@@ -86,7 +86,7 @@ export default {
       (error) => {
         console.log(error);
         // eslint-disable-next-line
-      }
+      },
     );
   },
   methods: {
@@ -106,11 +106,12 @@ export default {
             msg = "삭제 완료";
           }
           alert(msg);
+          this.$router.go();
         },
         (error) => {
           console.log(error);
           // eslint-disable-next-line
-        }
+        },
       );
     },
     AuthModify(member) {
@@ -132,7 +133,7 @@ export default {
         (error) => {
           console.log(error);
           // eslint-disable-next-line
-        }
+        },
       );
     },
   },
